@@ -45,12 +45,12 @@ class Edit extends Component
     public function updated($fields)
     {
         $this->validateOnly($fields, [
-            'brand' => ['required', 'min:2'],
+            'brand' => ['required', 'min:3'],
             'username' => ['min:8', 'required', 'alpha_dash'],
             'first_name' => ['min:3', 'alpha', 'required'],
             'last_name' => ['nullable', 'alpha'],
-            'email' => ['email', Rule::unique('users')->ignore($this->user->id, 'id')],
-            'mobile' => ['numeric', 'required', 'min:9', 'max:13'],
+            'email' => ['email', Rule::unique('users')->ignore($this->user->id, 'id'), 'required'],
+            'mobile' => ['digits_between:9,13', 'required', 'min:9', 'max:13'],
             'bio' => ['nullable'],
         ]);
     }
