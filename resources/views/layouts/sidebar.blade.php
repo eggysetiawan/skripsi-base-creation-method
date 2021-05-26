@@ -1,6 +1,7 @@
 <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
     <div class="c-sidebar-brand d-md-down-none">
         {{ config('app.name', 'Laravel') }}
+        <img src="{{ asset('images/default.png') }}" alt="Profile Picture" class="rounded-0" width="100">
     </div>
     <ul class="c-sidebar-nav">
 
