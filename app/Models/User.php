@@ -7,6 +7,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\MediaLibrary\HasMedia;
 
 class User extends Authenticatable implements HasMedia
 {
@@ -23,6 +24,11 @@ class User extends Authenticatable implements HasMedia
         'username',
         'email',
         'password',
+        'first_name',
+        'last_name',
+        'bio',
+        'mobile',
+        'brand'
     ];
 
     /**

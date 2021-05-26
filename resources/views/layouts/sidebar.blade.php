@@ -1,13 +1,33 @@
 <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
     <div class="c-sidebar-brand d-md-down-none">
-        {{ config('app.name', 'Laravel') }}
-        <img src="{{ asset('images/default.png') }}" alt="Profile Picture" class="rounded-0" width="100">
+        <img src="{{ asset('images/default1.jpg') }}" alt="Profile Picture" class="rounded-pill mt-3" width="85">
     </div>
+    <div class="c-sidebar-brand d-md-down-none">
+        {{ config('app.name', 'Laravel') }}
+    </div>
+
     <ul class="c-sidebar-nav">
 
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="{{ route('home') }}">
+            <a class="c-sidebar-nav-link{{ request()->segment(1) == 'dashboard' ? ' c-active' : '' }}"
+                href="{{ route('home') }}">
                 <i class="cil-home"></i>&nbsp;&nbsp; Dashboard
+            </a>
+        </li>
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link{{ request()->segment(1) == 'profiles' ? ' c-active' : '' }}"
+                href="{{ route('profiles.edit', auth()->user()->username) }}">
+                <i class="cil-user"></i>&nbsp;&nbsp; User Profile
+            </a>
+        </li>
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="{{ route('home') }}">
+                <i class="cil-library"></i>&nbsp;&nbsp; Portofolio
+            </a>
+        </li>
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="{{ route('home') }}">
+                <i class="cil-info"></i>&nbsp;&nbsp; Jadwal
             </a>
         </li>
 
@@ -21,8 +41,7 @@
             </a>
         </li>
 
-        <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent"
-            data-class="c-sidebar-unfoldable"></button>
+
     </ul>
 
 </div>
