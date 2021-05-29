@@ -21,12 +21,12 @@
             </a>
         </li>
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="{{ route('home') }}">
+            <a class="c-sidebar-nav-link" href="{{ route('portfolios.index') }}">
                 <i class="cil-library"></i>&nbsp;&nbsp; Portofolio
             </a>
         </li>
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="{{ route('home') }}">
+            <a class="c-sidebar-nav-link" href="{{ route('schedules.index') }}">
                 <i class="cil-info"></i>&nbsp;&nbsp; Jadwal
             </a>
         </li>

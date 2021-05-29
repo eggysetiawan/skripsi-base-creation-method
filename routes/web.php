@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{HomeController, ProfileController};
+use App\Http\Controllers\{HomeController, PortfolioController, ProfileController, ScheduleController};
 
 
 /*
@@ -27,3 +27,5 @@ Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
 Route::resource('profiles', ProfileController::class)->except(['create'])->parameters([
     'profiles' => 'user:username',
 ]);
+Route::resource('portfolios', PortfolioController::class);
+Route::resource('schedules', ScheduleController::class);
