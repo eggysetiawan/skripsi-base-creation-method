@@ -41,8 +41,8 @@
                                 <tr>
                                     <td>{{ $i }}</td>
                                     <td>Kegiatan {{ $i }}</td>
-                                    <td>{{ date('d F, Y', strtotime('+' . $i . ' days')) }}</td>
-                                    <td>{{ date('H:i') }}</td>
+                                    <td>{{ date('d F, Y', strtotime('+' . ($i + rand(1, 30)) . ' days')) }}</td>
+                                    <td>{{ date('H:i', strtotime('+' . ($i + rand(1, 24)) . ' hours')) }}</td>
                                     <td>
                                         <a href="#" class="mr-4"><i class="cil-pencil"></i></a>
                                         <a href="#"><i class="cil-check"></i></a>
