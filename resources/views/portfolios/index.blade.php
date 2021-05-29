@@ -6,7 +6,7 @@
             <div class="card mb-3">
                 <div class="card-header"><i class="cil-user"></i> Portfolio</div>
 
-                <img src="{{ asset('images/sample1.jpg') }}" alt="" class="card-img-top" width="100%" role="img">
+                <img src="{{ asset('images/sample7.jpg') }}" alt="" class="card-img-top" width="100%" role="img">
 
                 <div class="card-body">
                     {{-- <h5 class="card-title"></h5> --}}
