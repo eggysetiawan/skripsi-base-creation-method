@@ -7,13 +7,33 @@ use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    // public function baseCreation($price, $duration, $service)
+    // {
+    //     $maxPrice = 10000000;
+    //     $maxDuration = 24;
+    //     $maxService = 100;
+
+    //     $getPrice = $price / $maxPrice;
+    //     $getDuration = $duration / $maxDuration;
+    //     $getService = $service / $maxService;
+
+    //     return $getPrice + $getDuration + $getService;
+    // }
+
     public function index()
     {
+        // $price = 1000000;
+        // $duration = 3;
+        // $service = 70;
+
+        // $result = $this->baseCreation($price, $duration, $service);
         return view('schedules.index');
     }
 

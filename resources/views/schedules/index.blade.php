@@ -57,4 +57,25 @@
         </div>
     </div>
 
+
+
+    {{-- Metode Test --}}
+    {{-- <div class="container">
+        <div class="row justify-content-center">
+            <div class="h5">
+                Harga : {{ $price }}
+                Duraasi : {{ $duration }}
+                Layanan : {{ $service }}
+            </div>
+
+
+        </div>
+        <div class="row justify-content-center">
+            <div class="align-item-center h4">
+                Hasil Metode : {{ $result }}
+
+            </div>
+        </div>
+    </div> --}}
+
 @endsection
