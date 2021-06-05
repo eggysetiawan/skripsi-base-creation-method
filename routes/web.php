@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{HomeController, PortfolioController, ProfileController, ScheduleController};
+use App\Http\Controllers\{HomeController, PortfolioController, ProfileController, ScheduleController, RegisterController, RegistrationController};
 
 
 /*
@@ -16,16 +16,20 @@ use App\Http\Controllers\{HomeController, PortfolioController, ProfileController
 |
 */
 
+Route::resource('registrations', RegistrationController::class);
+
 Route::get('/', function () {
     return view('auth.login');
 });
 
 Auth::routes();
 
-Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
 
-Route::resource('profiles', ProfileController::class)->except(['create'])->parameters([
-    'profiles' => 'user:username',
-]);
-Route::resource('portfolios', PortfolioController::class);
-Route::resource('schedules', ScheduleController::class);
+    Route::resource('profiles', ProfileController::class)->except(['create'])->parameters([
+        'profiles' => 'user:username',
+    ]);
+    Route::resource('portfolios', PortfolioController::class);
+    Route::resource('schedules', ScheduleController::class);
+});
