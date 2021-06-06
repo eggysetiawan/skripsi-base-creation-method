@@ -33,5 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('portfolios', PortfolioController::class);
     Route::resource('schedules', ScheduleController::class);
 
-    Route::resource('criterias', CriteriaController::class)->middleware('role:admin|superadmin');
+    Route::resource('criterias', CriteriaController::class)->middleware('role:admin|superadmin')->parameters([
+        'criterias' => 'criteria:slug',
+    ]);
 });

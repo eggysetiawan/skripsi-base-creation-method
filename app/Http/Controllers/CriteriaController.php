@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CriteriaRequest;
 use App\Models\Criteria;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Requests\CriteriaRequest;
 
 class CriteriaController extends Controller
 {
@@ -15,7 +16,7 @@ class CriteriaController extends Controller
      */
     public function index()
     {
-        $criterias = Criteria::all();
+        $criterias = Criteria::orderBy('name', 'asc')->get();
         return view('criterias.index', compact('criterias'));
     }
 
@@ -26,7 +27,7 @@ class CriteriaController extends Controller
      */
     public function create()
     {
-        return view('criteria.create', [
+        return view('criterias.create', [
             'criteria' => new Criteria(),
         ]);
     }
@@ -39,7 +40,8 @@ class CriteriaController extends Controller
      */
     public function store(CriteriaRequest $request)
     {
-        $attr   = $request->validated();
+        $attr = $request->validated();
+        $attr['slug'] = Str::slug($request->name);
         Criteria::create($attr);
 
         session()->flash('success', 'Kriteria telah berhasil dibuat!');
@@ -65,8 +67,9 @@ class CriteriaController extends Controller
      */
     public function edit(Criteria $criteria)
     {
-        return view('criteria.edit', compact('criteria'));
+        return view('criterias.edit', compact('criteria'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -93,6 +96,8 @@ class CriteriaController extends Controller
      */
     public function destroy(Criteria $criteria)
     {
-        //
+        $criteria->delete();
+        session()->flash('success', 'Kriteria berhasil dihapus!');
+        return redirect('criterias');
     }
 }

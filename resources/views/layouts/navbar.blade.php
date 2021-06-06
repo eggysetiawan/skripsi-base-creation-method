@@ -9,7 +9,10 @@
         <i class="cil-menu"></i>
     </button>
     <ul class="c-header-nav d-md-down-none">
-        <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Photografer</a></li>
+        <li class="c-header-nav-item px-3"><a class="c-header-nav-link"
+                href="#">{{ ucfirst(
+    auth()->user()->getRoleNames()->first(),
+) }}</a></li>
         {{-- <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Users</a></li>
         <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Settings</a></li> --}}
     </ul>

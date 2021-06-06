@@ -7,12 +7,10 @@
 
             <div class="card">
                 <div class="card-header"><i class="fa fa-align-justify"></i> Buat Kriteria</div>
-                <div class="card-body">
-                    <form action="{{ route('criterias.store') }}" method="post">
-                        @csrf
-                        @include('criterias.partials._form-control')
-                    </form>
-                </div>
+                <form action="{{ route('criterias.store') }}" method="post">
+                    @csrf
+                    @include('criterias.partials._form-control', ['submit' => 'Create',])
+                </form>
             </div>
         </div>
     </div>

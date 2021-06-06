@@ -1,9 +1,9 @@
 <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
     <div class="c-sidebar-brand d-md-down-none">
-        <img src="{{ asset('images/default1.jpg') }}" alt="Profile Picture" class="rounded-pill mt-3" width="85">
+        <img src="{{ asset('images/default1.jpg') }}" alt="Profile Picture" class="rounded-circle mt-3" width="85">
     </div>
     <div class="c-sidebar-brand d-md-down-none">
-        {{ ucfirst(auth()->user()->name) }}
+        <a href="{{ route('profiles.show', auth()->user()->username) }}">{{ ucfirst(auth()->user()->name) }}</a>
     </div>
 
     <ul class="c-sidebar-nav">
@@ -34,7 +34,7 @@
 
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="{{ route('criterias.index') }}">
-                <i class="cil-info"></i>&nbsp;&nbsp; Kriteria
+                <i class="cil-list-rich"></i>&nbsp;&nbsp; Kriteria
             </a>
         </li>
 
