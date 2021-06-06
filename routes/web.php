@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{HomeController, PortfolioController, ProfileController, ScheduleController, RegisterController, RegistrationController};
+use App\Http\Controllers\{CriteriaController, HomeController, PortfolioController, ProfileController, ScheduleController, RegisterController, RegistrationController};
 
 
 /*
@@ -32,4 +32,6 @@ Route::middleware('auth')->group(function () {
     ]);
     Route::resource('portfolios', PortfolioController::class);
     Route::resource('schedules', ScheduleController::class);
+
+    Route::resource('criterias', CriteriaController::class)->middleware('role:admin|superadmin');
 });

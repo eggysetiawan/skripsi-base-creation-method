@@ -29,6 +29,18 @@ class UserSeeder extends Seeder
             'brand' => 'supeardmin',
         ]);
 
+        $admins = User::create([
+            'name' => 'admin',
+            'username' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('admin'),
+            'first_name' => 'Admin',
+            'last_name' => null,
+            'bio' => 'Most Powerful user',
+            'mobile' => '009988383838',
+            'brand' => 'supeardmin',
+        ]);
+
         $willy = User::create([
             'name' => 'willy',
             'username' => 'willy',
@@ -54,9 +66,11 @@ class UserSeeder extends Seeder
         ]);
 
         $superadmin = Role::create(['name' => 'superadmin']);
+        $admin = Role::create(['name' => 'admin']);
         $photographer = Role::create(['name' => 'photographer']);
         $customer = Role::create(['name' => 'customer']);
 
+        Permission::create(['name' => 'admin']);
         Permission::create(['name' => 'openworld']);
         Permission::create(['name' => 'photo']);
         Permission::create(['name' => 'order']);
@@ -65,10 +79,13 @@ class UserSeeder extends Seeder
         $superadmin->givePermissionTo('photo');
         $superadmin->givePermissionTo('order');
 
+        $admin->givePermissionTo('admin');
+
         $photographer->givePermissionTo('photo');
         $customer->givePermissionTo('order');
 
         $superadmins->assignRole('superadmin');
+        $admins->assignRole('admin');
         $willy->assignRole('photographer');
         $demo_customer->assignRole('customer');
     }

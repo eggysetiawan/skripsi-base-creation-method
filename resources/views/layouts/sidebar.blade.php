@@ -3,7 +3,7 @@
         <img src="{{ asset('images/default1.jpg') }}" alt="Profile Picture" class="rounded-pill mt-3" width="85">
     </div>
     <div class="c-sidebar-brand d-md-down-none">
-        {{ config('app.name', 'Laravel') }}
+        {{ ucfirst(auth()->user()->name) }}
     </div>
 
     <ul class="c-sidebar-nav">
@@ -25,9 +25,16 @@
                 <i class="cil-library"></i>&nbsp;&nbsp; Portofolio
             </a>
         </li>
+
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="{{ route('schedules.index') }}">
                 <i class="cil-info"></i>&nbsp;&nbsp; Jadwal
+            </a>
+        </li>
+
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="{{ route('criterias.index') }}">
+                <i class="cil-info"></i>&nbsp;&nbsp; Kriteria
             </a>
         </li>
 
