@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Creation;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreationRequest;
+use Illuminate\Support\Facades\DB;
 
 class CreationController extends Controller
 {
@@ -33,9 +36,23 @@ class CreationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreationRequest $request)
     {
-        //
+        $attr = $request->all();
+        $slug = Str::slug($request->title . '-' . $request->category);
+        $attr['slug'] = Str::limit($slug, 255);
+
+        DB::transaction(function () use ($attr) {
+            $creations = auth()->user()->creations()->create($attr);
+            $creations
+                ->addMultipleMediaFromRequest(['photos'])
+                ->each(function ($fileAdder) {
+                    $fileAdder->toMediaCollection('creation');
+                });
+        });
+
+        session()->flash('success', 'Album Berhasil dibuat');
+        return back();
     }
 
     /**

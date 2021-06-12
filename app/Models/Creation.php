@@ -11,4 +11,11 @@ class Creation extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
+
+    protected $fillable = ['title', 'slug', 'category'];
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

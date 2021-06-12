@@ -14,7 +14,7 @@
                         </div>
                         <div class="row justify-content-center">
                             <a href="{{ route('photographer.show', $photographer->username) }}"
-                                class="card-text text-muted">
+                                class="card-text text-muted stretched-link">
                                 <h5>{{ ucfirst($photographer->name) }}</h5>
                             </a>
                         </div>

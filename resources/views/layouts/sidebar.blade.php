@@ -33,6 +33,11 @@
         </li>
 
         <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="{{ route('photographers.index') }}">
+                <i class="cil-camera"></i>&nbsp;&nbsp; Fotografer
+            </a>
+        </li>
+        <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="{{ route('criterias.index') }}">
                 <i class="cil-list-rich"></i>&nbsp;&nbsp; Kriteria
             </a>
