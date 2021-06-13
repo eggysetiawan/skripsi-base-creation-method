@@ -14,16 +14,37 @@
                             <label for="title">{{ __('Judul') }}</label>
                             <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}"
                                 placeholder="cth: Wedding Willy & Wendy">
+                            @error('title')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="category">{{ __('Kategori') }}</label>
                             <input type="text" name="category" id="category" class="form-control"
-                                value="{{ old('title') }}" placeholder="cth: Wedding, Sport, Nature, Culture">
+                                value="{{ old('category') }}" placeholder="cth: Wedding, Sport, Nature, Culture">
+                            @error('category')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="description">{{ __('Deskripsi') }}</label>
+                            <textarea name="description" id="description" class="form-control"
+                                placeholder="Pernikahan merupakan sebuah..."></textarea>
+                            @error('description')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="photos">{{ __('Foto') }}</label>
                             <input type="file" name="photos[]" multiple id="photos" class="form-control-file"
                                 accept=".jpeg,.jpg,.png">
+                            <footer class="blockquote-footer">*Foto pertama akan menjadi thumbnail dari album.</footer>
                         </div>
                     </div>
                     <div class="card-footer">

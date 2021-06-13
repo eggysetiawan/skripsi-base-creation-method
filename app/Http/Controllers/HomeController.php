@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Creation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // $categories = Creation::categoryList();
+        // $value = null;
+        // $creations = Creation::allCreations();
+
+        // if ($value) {
+        //     $creations = Creation::creations($value);
+        // }
+
         return view('home');
     }
 }

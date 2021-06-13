@@ -38,9 +38,10 @@ class CreationController extends Controller
      */
     public function store(CreationRequest $request)
     {
-        $attr = $request->all();
+        $attr = $request->validated();
         $slug = Str::slug($request->title . '-' . $request->category);
         $attr['slug'] = Str::limit($slug, 255);
+        $attr['category'] = strtolower($request->category);
 
         DB::transaction(function () use ($attr) {
             $creations = auth()->user()->creations()->create($attr);

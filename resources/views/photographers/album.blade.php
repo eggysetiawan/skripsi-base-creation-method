@@ -1,25 +1,43 @@
-  <div class="row justify-content-center">
-      <ul class="list-group list-group-horizontal-md">
-          <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Morbi leo risus</li>
+  {{-- <div class="row justify-content-center mb-4">
+      <ul class="list-group list-group-horizontal-md list-group-accent .clist-group-accent h5 ">
+          <li class="list-group-item">
+              <a href="#!" wire:click="all">
+                  ALL
+              </a>
+          </li>
+          @foreach ($categories as $category)
+              <li class="list-group-item">
+                  <a href="#!" class="text-mute" wire:click="selectCategory($category->category)">
+                      {{ strtoupper($category->category) }}
+                  </a>
+              </li>
+          @endforeach
       </ul>
   </div>
 
-  <div class="row justify-content-center">
-      @for ($i = 1; $i <= 6; $i++)
-          <div class="col-md-4 mb-4">
-              <div class="card" style="width: 18rem;">
-                  <img src="{{ asset('images/sample' . $i . '.jpg') }}" class="card-img-top" alt="..." height="200">
-                  <div class="card-img-overlay">
-                      <h5 class="card-title "
-                          style="text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;">Judul
-                          Karya</h5>
-                  </div>
-                  <div class="card-body">
-                      <p class="card-text">Ini adalah deskripsi dari karya yang ditampilkan.</p>
+  @foreach ($creations as $creation)
+      <div class="row justify-content-start mb-3">
+          <span class="display-4">{{ $creation->title }}</span><br>
+      </div>
+      <div class="row justify-content-start">
+
+          @foreach ($creation->getMedia('creation') as $media)
+              <div class="col-md-4 mb-4">
+                  <div class="card" style="width: 18rem;">
+                      <img src="{{ asset($media->getFullUrl('thumb')) }}" class="card-img-top" alt="..." height="200"
+                          style="object-fit: cover;">
+                      <div class="card-img-overlay">
+
+                      </div>
+                      @if ($creation->description)
+                          <div class="card-body">
+                              <p class="card-text">{{ $creation->description }}</p>
+                          </div>
+                      @endif
+
                   </div>
               </div>
-          </div>
-      @endfor
-  </div>
+          @endforeach
+      </div>
+  @endforeach --}}
+  <livewire:photographers.album />
