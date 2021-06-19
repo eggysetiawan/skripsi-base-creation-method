@@ -1,4 +1,4 @@
-<div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
+<div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-hide" id="sidebar">
     <div class="c-sidebar-brand d-md-down-none">
         <img src="{{ asset('images/default1.jpg') }}" alt="Profile Picture" class="rounded-circle mt-3" width="85">
     </div>
@@ -11,52 +11,51 @@
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link{{ request()->segment(1) == 'dashboard' ? ' c-active' : '' }}"
                 href="{{ route('home') }}">
-                <i class="cil-home"></i>&nbsp;&nbsp; Dashboard
+                <i class="c-sidebar-nav-icon cil-home"></i>Dashboard
             </a>
         </li>
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link{{ request()->segment(1) == 'profiles' ? ' c-active' : '' }}"
                 href="{{ route('profiles.edit', auth()->user()->username) }}">
-                <i class="cil-user"></i>&nbsp;&nbsp; User Profile
+                <i class="c-sidebar-nav-icon cil-user"></i>User Profile
             </a>
         </li>
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="{{ route('portfolios.index') }}">
-                <i class="cil-library"></i>&nbsp;&nbsp; Portofolio
+                <i class="c-sidebar-nav-icon cil-library"></i>Portofolio
             </a>
         </li>
 
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="{{ route('schedules.index') }}">
-                <i class="cil-info"></i>&nbsp;&nbsp; Jadwal
+                <i class="c-sidebar-nav-icon cil-info"></i>Jadwal
             </a>
         </li>
 
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="{{ route('photographers.index') }}">
-                <i class="cil-camera"></i>&nbsp;&nbsp; Fotografer
+                <i class="c-sidebar-nav-icon cil-camera"></i>Fotografer
             </a>
         </li>
 
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="{{ route('questions.index') }}">
-                <i class="cil-clipboard"></i>&nbsp;&nbsp; Pertanyaan Kuisioner
+                <i class="c-sidebar-nav-icon cil-clipboard"></i>Pertanyaan Kuisioner
             </a>
         </li>
 
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="{{ route('criterias.index') }}">
-                <i class="cil-list-rich"></i>&nbsp;&nbsp; Kriteria
+                <i class="c-sidebar-nav-icon cil-list-rich"></i>Kriteria
             </a>
         </li>
 
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                           document.getElementById('logout-form').submit();">
-                <i class="cil-account-logout
+                <i class="c-sidebar-nav-icon cil-account-logout
               ">
-                </i> &nbsp;&nbsp;
-                {{ __('Logout') }}
+                </i> {{ __('Logout') }}
             </a>
         </li>
 

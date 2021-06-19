@@ -27,7 +27,6 @@ class PhotographerController extends Controller
 
     public function show(User $user)
     {
-        dd($user);
         return view('photographers.show', compact('user'));
     }
 }

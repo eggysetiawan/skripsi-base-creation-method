@@ -44,7 +44,6 @@
                             <label for="photos">{{ __('Foto') }}</label>
                             <input type="file" name="photos[]" multiple id="photos" class="form-control-file"
                                 accept=".jpeg,.jpg,.png">
-                            <footer class="blockquote-footer">*Foto pertama akan menjadi thumbnail dari album.</footer>
                         </div>
                     </div>
                     <div class="card-footer">

@@ -18,13 +18,13 @@ class Creation extends Model implements HasMedia
 
     protected $with = ['author', 'media'];
 
-    public function registerMediaConversions(Media $media = null): void
-    {
-        $this->addMediaConversion('thumb')
-            ->width(800)
-            ->height(600)
-            ->performOnCollections('creation');
-    }
+    // public function registerMediaConversions(Media $media = null): void
+    // {
+    //     $this->addMediaConversion('thumb')
+    //         ->width(800)
+    //         ->height(600)
+    //         ->performOnCollections('creation');
+    // }
 
     // queries
     public static function categoryList()

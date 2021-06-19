@@ -1,6 +1,4 @@
 <div>
-
-
     <div class="row justify-content-center mb-4">
         <div wire:loading>
             <div class="d-flex justify-content-center">
@@ -11,21 +9,26 @@
         </div>
 
         <span class="inline-block" wire:loading.remove>
-            <ul class="list-group list-group-horizontal-md list-group-accent .clist-group-accent h5">
-                <li class="list-group-item">
-                    <a href="#!" wire:click.prevent="all">
-                        ALL
-                    </a>
-                </li>
-                @foreach ($categories as $category)
+
+            @if ($categories->first())
+                <ul class="list-group list-group-horizontal-md list-group-accent .clist-group-accent h5">
                     <li class="list-group-item">
-                        <a href="#!" class="text-mute"
-                            wire:click.prevent="selectCategory('{{ strtolower($category->category) }}')">
-                            {{ strtoupper($category->category) }}
+                        <a href="#!" wire:click.prevent="all">
+                            ALL
                         </a>
                     </li>
-                @endforeach
-            </ul>
+                    @foreach ($categories as $category)
+                        <li class="list-group-item">
+                            <a href="#!" class="text-mute"
+                                wire:click.prevent="selectCategory('{{ strtolower($category->category) }}')">
+                                {{ strtoupper($category->category) }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+
+            @endif
+
         </span>
 
     </div>
@@ -40,9 +43,9 @@
 
 
             @foreach ($creation->getMedia('creation') as $media)
-                <div class="col-md-4 mb-4" wire:loading.remove>
+                <div class="col-lg-4 mb-4" wire:loading.remove>
                     <div class="card" style="width: 18rem;">
-                        <img src="{{ asset($media->getFullUrl('thumb')) }}" class="card-img-top" alt="..."
+                        <img src="{{ asset($media->getFullUrl()) }}" class="card-img-top  img-fluid" alt="..."
                             height="200" style="object-fit: cover;">
                         <div class="card-img-overlay">
                             {{-- <h5 class="card-title "
