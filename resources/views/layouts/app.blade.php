@@ -17,10 +17,12 @@
     @include('layouts.sidebar')
     <div class="c-wrapper">
         @include('layouts.navbar')
+        @include('layouts.breadcrumb')
 
         <div class="c-body">
             <main class="c-main">
                 <div class="container-fluid">
+
                     @yield('content')
                 </div>
             </main>

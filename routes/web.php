@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{CreationController, CriteriaController, HomeController, PhotographerController, PortfolioController, ProfileController, ScheduleController, RegisterController, RegistrationController};
+use App\Http\Controllers\{CreationController, CriteriaController, HomeController, PhotographerController, PortfolioController, ProfileController, QuestionController, ScheduleController, RegisterController, RegistrationController};
 
 
 /*
@@ -41,6 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('profiles', ProfileController::class)->except(['create'])->parameters([
         'profiles' => 'user:username',
     ]);
+
+    Route::resource('questions', QuestionController::class);
 
     Route::resource('schedules', ScheduleController::class);
 });
