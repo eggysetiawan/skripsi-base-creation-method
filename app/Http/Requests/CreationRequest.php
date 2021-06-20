@@ -26,7 +26,7 @@ class CreationRequest extends FormRequest
         return [
             'title' => ['required', 'max:255', 'string'],
             'category' => ['required', 'max:255', 'string'],
-            'description' => ['required', 'string'],
+            'description' => ['nullable', 'string'],
         ];
     }
 }

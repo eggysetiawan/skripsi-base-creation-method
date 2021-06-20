@@ -27,26 +27,30 @@ class Creation extends Model implements HasMedia
     // }
 
     // queries
-    public static function categoryList()
+    public static function categoryList($user)
     {
         return static::query()
             ->select('category', DB::raw('count(*) as total'))
+            ->when(auth()->id() != 1, function ($query) use ($user) {
+                return $query->where('user_id', $user);
+            })
             ->groupBy('category')
             ->get();
     }
 
-    public static function allCreations()
+    public static function allCreations($user)
     {
         return static::query()
-            ->when(!auth()->user()->roles()->first()->name == 'superadmin', function ($query) {
-                return $query->where('user_ud', auth()->id());
+            ->when(auth()->id() != 1, function ($query) use ($user) {
+                return $query->where('user_id', $user);
             })->get();
     }
-    public static function creations($categories)
+    public static function creations($categories, $user)
     {
+        $user = $user ?? auth()->id();
         return static::query()
-            ->when(!auth()->user()->roles()->first()->name == 'superadmin', function ($query) {
-                return $query->where('user_ud', auth()->id());
+            ->when(auth()->id() != 1, function ($query) use ($user) {
+                return $query->where('user_id', $user);
             })
             ->whereIn('category', $categories)
             ->get();
