@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('breadcrumb')
+    <li class="breadcrumb-item active">Pilih Fotografer</li>
+@endsection
+
 @section('content')
     <div class="card">
         <div class="card-header">Daftar Fotografer</div>

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Questionnaire;
+use App\Http\Requests\QuestionnaireRequest;
+use App\Http\Requests\UpdateQuestionnaireRequest;
+use App\Models\Question;
 use Illuminate\Http\Request;
+use App\Models\Questionnaire;
 
 class QuestionnaireController extends Controller
 {
@@ -14,7 +17,11 @@ class QuestionnaireController extends Controller
      */
     public function index()
     {
-        //
+        $questionnaires = Questionnaire::query()
+            ->with('question', 'author')
+            ->where('user_id', auth()->id())
+            ->get();
+        return view('questionnaires.index', compact('questionnaires'));
     }
 
     /**
@@ -24,7 +31,9 @@ class QuestionnaireController extends Controller
      */
     public function create()
     {
-        //
+        $questions = Question::all();
+        $questionnaire = new Questionnaire();
+        return view('questionnaires.create', compact('questionnaire', 'questions'));
     }
 
     /**
@@ -33,9 +42,20 @@ class QuestionnaireController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(QuestionnaireRequest $request)
     {
-        //
+        $request->validated();
+
+        $questions = Question::find($request->questions);
+        foreach ($questions as $question) {
+            auth()->user()->questionnaires()->create([
+                'question_id' => $question->id,
+                'answer' => $request->answers[$question->id],
+            ]);
+        }
+
+        session()->flash('success', 'Kuisioner telah berhasil di submit!');
+        return back();
     }
 
     /**
@@ -57,7 +77,7 @@ class QuestionnaireController extends Controller
      */
     public function edit(Questionnaire $questionnaire)
     {
-        //
+        return view('questionnaires.edit', compact('questionnaire'));
     }
 
     /**
@@ -67,9 +87,11 @@ class QuestionnaireController extends Controller
      * @param  \App\Models\Questionnaire  $questionnaire
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Questionnaire $questionnaire)
+    public function update(UpdateQuestionnaireRequest $request, Questionnaire $questionnaire)
     {
-        //
+        $questionnaire->update($request->validated());
+        session()->flash('success', 'Kuisioner telah berhasil di update!');
+        return redirect('questionnaires');
     }
 
     /**

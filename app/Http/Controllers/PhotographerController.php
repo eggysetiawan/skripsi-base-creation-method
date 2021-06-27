@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Creation;
 use Illuminate\Http\Request;
 
 class PhotographerController extends Controller
@@ -27,6 +28,11 @@ class PhotographerController extends Controller
 
     public function show(User $user)
     {
-        return view('photographers.show', compact('user'));
+        $projects = Creation::query()
+            ->where('user_id', $user->id)
+            ->latest()
+            ->get();
+
+        return view('photographers.show', compact('user', 'projects'));
     }
 }

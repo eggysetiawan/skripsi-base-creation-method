@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Creation extends Model implements HasMedia
 {
@@ -31,7 +30,7 @@ class Creation extends Model implements HasMedia
     {
         return static::query()
             ->select('category', DB::raw('count(*) as total'))
-            ->where('id', $user->id)
+            ->where('user_id', $user->id)
             ->groupBy('category')
             ->get();
     }

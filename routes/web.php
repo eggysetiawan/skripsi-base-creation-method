@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{CreationController, CriteriaController, HomeController, PhotographerController, PortfolioController, ProfileController, QuestionController, ScheduleController, RegisterController, RegistrationController};
+use App\Http\Controllers\{CreationController, CriteriaController, HomeController, PhotographerController, PortfolioController, ProfileController, QuestionController, ScheduleController, RegisterController, RegistrationController, QuestionnaireController};
 
 
 /*
@@ -43,6 +43,8 @@ Route::middleware('auth')->group(function () {
     ]);
 
     Route::resource('questions', QuestionController::class);
+
+    Route::resource('questionnaires', QuestionnaireController::class);
 
     Route::resource('schedules', ScheduleController::class);
 });

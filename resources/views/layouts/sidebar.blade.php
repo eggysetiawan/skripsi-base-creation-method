@@ -45,6 +45,12 @@
         </li>
 
         <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="{{ route('questionnaires.index') }}">
+                <i class="c-sidebar-nav-icon cil-clipboard"></i>Isi Kuisioner
+            </a>
+        </li>
+
+        <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="{{ route('criterias.index') }}">
                 <i class="c-sidebar-nav-icon cil-list-rich"></i>Kriteria
             </a>
