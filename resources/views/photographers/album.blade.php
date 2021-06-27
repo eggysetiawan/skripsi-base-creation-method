@@ -1,1 +1,1 @@
-<livewire:photographers.album />
+<livewire:photographers.album :key="$user->id" :user="$user" />

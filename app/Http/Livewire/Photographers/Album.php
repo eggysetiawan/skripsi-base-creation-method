@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Photographers;
 
+use App\Models\User;
 use Livewire\Component;
 use App\Models\Creation;
 
@@ -10,6 +11,8 @@ class Album extends Component
     public $categories = [];
     public $creations = [];
     public $value = [];
+
+    public $user;
 
     public function all()
     {

@@ -19,6 +19,9 @@
                     <hr>
                     <a href="#">Album</a> --}}
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a href=" {{ route('creations.create') }}" class="nav-link" aria-controls=" v-pills-gallery"
+                            aria-selected="true">Tambah Gallery</a>
+                        <hr>
                         <a class="nav-link active" id="v-pills-gallery-tab" data-toggle="pill" href="#v-pills-gallery"
                             role="tab" aria-controls="v-pills-gallery" aria-selected="true">Project Gallery</a>
                         <a class="nav-link" id="v-pills-album-tab" data-toggle="pill" href="#v-pills-album" role="tab"

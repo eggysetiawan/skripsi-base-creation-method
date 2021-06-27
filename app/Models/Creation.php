@@ -31,9 +31,7 @@ class Creation extends Model implements HasMedia
     {
         return static::query()
             ->select('category', DB::raw('count(*) as total'))
-            ->when(auth()->id() != 1, function ($query) use ($user) {
-                return $query->where('user_id', $user);
-            })
+            ->where('id', $user->id)
             ->groupBy('category')
             ->get();
     }
@@ -41,17 +39,13 @@ class Creation extends Model implements HasMedia
     public static function allCreations($user)
     {
         return static::query()
-            ->when(auth()->id() != 1, function ($query) use ($user) {
-                return $query->where('user_id', $user);
-            })->get();
+            ->where('user_id', $user->id)
+            ->get();
     }
     public static function creations($categories, $user)
     {
-        $user = $user ?? auth()->id();
         return static::query()
-            ->when(auth()->id() != 1, function ($query) use ($user) {
-                return $query->where('user_id', $user);
-            })
+            ->where('user_id', $user->id)
             ->whereIn('category', $categories)
             ->get();
     }
