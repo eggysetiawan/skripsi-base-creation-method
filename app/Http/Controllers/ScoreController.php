@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ScoreRequest;
+use App\Http\Requests\UpdateScoreRequest;
+use App\Models\Criteria;
+use App\Models\Questionnaire;
 use App\Models\User;
 use App\Models\Score;
 use Illuminate\Http\Request;
@@ -34,9 +38,20 @@ class ScoreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeRating(ScoreRequest $request, User $user)
     {
-        //
+        $request->validated();
+
+        $criterias = Criteria::find($request->criterias);
+        foreach ($criterias as $criteria) {
+            Score::create([
+                'user_id' => $user->id,
+                'criteria_id' => $criteria->id,
+                'score' => $request->score[$criteria->id],
+            ]);
+        }
+        session()->flash('success', 'Penilaian telah berhasil dibuat!');
+        return redirect('questions');
     }
 
     /**
@@ -56,16 +71,27 @@ class ScoreController extends Controller
      * @param  \App\Models\Score  $score
      * @return \Illuminate\Http\Response
      */
-    public function edit(Score $score)
+    public function edit(User $user)
     {
-        //
+        $scores = Score::with('criteria')->whereHas('criteria')->get();
+
+        $questionnaires = Questionnaire::query()
+            ->with('question', 'author')
+            ->where('user_id', $user->id)
+            ->get();
+
+        return view('scores.edit', compact('user', 'scores', 'questionnaires'));
     }
 
     public function rating(User $user)
     {
-        dd($user);
+        $criterias = Criteria::all();
 
-        return view('scores.rating', compact('user'));
+        $questionnaires = Questionnaire::query()
+            ->with('question', 'author')
+            ->where('user_id', $user->id)
+            ->get();
+        return view('scores.rating', compact('user', 'criterias', 'questionnaires'));
     }
 
     /**
@@ -75,9 +101,17 @@ class ScoreController extends Controller
      * @param  \App\Models\Score  $score
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Score $score)
+    public function update(UpdateScoreRequest $request, User $user)
     {
-        //
+        $request->validated();
+
+        foreach ($user->scores as $score) {
+            $score->update([
+                'score' => $request->score[$score->id],
+            ]);
+        }
+        session()->flash('success', 'Penilaian telah berhasil diperbarui!');
+        return redirect('questions');
     }
 
     /**

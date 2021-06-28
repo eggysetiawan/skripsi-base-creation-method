@@ -95,8 +95,13 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $user->name }}</td>
                                             <td>
-                                                <a href="{{ route('scores.rating', $user->username) }}"
-                                                    class="btn btn-success">Berikan Penilaian.</a>
+                                                @if ($user->has('scores'))
+                                                    <a href="{{ route('scores.edit', $user->username) }}"
+                                                        class="btn btn-info">Edit Penilaian.</a>
+                                                @else
+                                                    <a href="{{ route('scores.rating', $user->username) }}"
+                                                        class="btn btn-success">Berikan Penilaian.</a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

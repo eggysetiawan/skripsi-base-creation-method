@@ -11,4 +11,9 @@ class Criteria extends Model
     public $timestamps = false;
 
     protected $guarded = [];
+
+    public function score()
+    {
+        return $this->hasOne(Score::class);
+    }
 }

@@ -15,4 +15,9 @@ class Score extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function criteria()
+    {
+        return $this->belongsTo(Criteria::class);
+    }
 }

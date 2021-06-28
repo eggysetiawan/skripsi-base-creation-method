@@ -14,6 +14,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::view('about', 'about')->name('about');
+
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
 
@@ -37,7 +39,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('questionnaires', QuestionnaireController::class);
 
     Route::prefix('scores')->name('scores.')->group(function () {
-        Route::get('{user:name}/rating', [ScoreController::class, 'rating'])->name('rating');
+        Route::get('{user:username}/rating', [ScoreController::class, 'rating'])->name('rating');
+        Route::post('rating/{user:username}/store', [ScoreController::class, 'storeRating'])->name('rating.store');
+        Route::get('{user:username}/edit', [ScoreController::class, 'edit'])->name('edit');
+        Route::patch('{user:username}/update', [ScoreController::class, 'update'])->name('update');
     });
 
     Route::resource('schedules', ScheduleController::class);

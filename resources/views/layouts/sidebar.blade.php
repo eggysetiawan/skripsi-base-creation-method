@@ -65,6 +65,11 @@
             </a>
         </li>
 
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="{{ route('about') }}">
+                <i class="c-sidebar-nav-icon cil-contact"></i>About
+            </a>
+        </li>
 
     </ul>
 

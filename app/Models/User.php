@@ -61,4 +61,9 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->hasMany(Questionnaire::class);
     }
+
+    public function scores()
+    {
+        return $this->hasMany(Score::class);
+    }
 }

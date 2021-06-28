@@ -10,11 +10,30 @@
     <div class="row justify-content-center">
         <div class="col-md-6" style="height: 100vh">
 
-            <form action="{{ route('scores.rating.store', $user->username) }}" method="post">
+            <form action="{{ route('scores.update', $user->username) }}" method="post">
                 @csrf
+                @method('patch')
                 <div class="card">
                     <div class="card-header"><i class="fa fa-align-justify"></i> Penilaian Fotografer</div>
-                    @include('scores.partials._form-control')
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            @foreach ($scores as $score)
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label
+                                            for="score.{{ $score->criteria->id }}">{{ $score->criteria->name }}</label>
+                                        <input type="number" class="form-control" name="score[{{ $score->id }}] "
+                                            id="score.{{ $score->id }}" min="0" value="{{ $score->score }}">
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">{{ $update ?? 'Submit' }}</button>
+                    </div>
+
                 </div>
             </form>
         </div>
