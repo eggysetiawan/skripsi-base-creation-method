@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateQuestionnaireRequest;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Models\Questionnaire;
+use App\Models\User;
 
 class QuestionnaireController extends Controller
 {
@@ -17,11 +18,9 @@ class QuestionnaireController extends Controller
      */
     public function index()
     {
-        $questionnaires = Questionnaire::query()
-            ->with('question', 'author')
-            ->where('user_id', auth()->id())
-            ->get();
-        return view('questionnaires.index', compact('questionnaires'));
+        $questionnaires = Questionnaire::getQuestionnaires();
+        $questionnaireExist = Questionnaire::isExists();
+        return view('questionnaires.index', compact('questionnaires', 'questionnaireExist'));
     }
 
     /**
@@ -55,7 +54,7 @@ class QuestionnaireController extends Controller
         }
 
         session()->flash('success', 'Kuisioner telah berhasil di submit!');
-        return back();
+        return redirect('questionnaires');
     }
 
     /**

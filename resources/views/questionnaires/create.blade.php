@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('breadcrumb')
-    {{-- <li class="breadcrumb-item"><a href="{{ route('photographers.index') }}">Pilih Fotografer</a></li> --}}
+    <li class="breadcrumb-item"><a href="{{ route('questionnaires.index') }}">Table Kuisioner</a></li>
     <li class="breadcrumb-item active">Isi Kuisioner</li>
 @endsection
 

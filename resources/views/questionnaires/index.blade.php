@@ -8,11 +8,10 @@
 
     <div class="d-flex justify-content-center">
         <div class="col-md-8">
-            @if (!$questionnaires)
+            @if (!$questionnaireExist)
                 <a href="{{ route('questionnaires.create') }}" class="btn btn-primary">Isi Kuisionser</a>
-
             @else
-                <div class="card">
+                <div class="card mt-2">
                     <div class="card-header">Kuisioner Anda</div>
                     <div class="card-body">
 
@@ -33,7 +32,6 @@
                 </div>
             @endif
         </div>
-    </div>
 
 
-@endsection
+    @endsection

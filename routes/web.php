@@ -2,19 +2,9 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\{CreationController, CriteriaController, HomeController, PhotographerController, PortfolioController, ProfileController, QuestionController, ScheduleController, RegisterController, RegistrationController, QuestionnaireController};
 
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::resource('registrations', RegistrationController::class);
 
@@ -45,6 +35,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('questions', QuestionController::class);
 
     Route::resource('questionnaires', QuestionnaireController::class);
+
+    Route::prefix('scores')->name('scores.')->group(function () {
+        Route::get('{user:name}/rating', [ScoreController::class, 'rating'])->name('rating');
+    });
 
     Route::resource('schedules', ScheduleController::class);
 });
