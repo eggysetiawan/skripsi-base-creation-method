@@ -1,5 +1,5 @@
 <div class="card-body">
-
+    <x-testing-user />
     @foreach ($questions as $question)
         <input type="hidden" name="questions[]" value="{{ $question->id }}">
         <div class="form-group">

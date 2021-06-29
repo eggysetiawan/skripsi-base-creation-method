@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Question;
 use App\Http\Requests\QuestionRequest;
+use App\Models\Criteria;
 
 class QuestionController extends Controller
 {
@@ -17,7 +18,8 @@ class QuestionController extends Controller
     {
         $questions = Question::get();
         $users = User::whereHas('questionnaires')->get();
-        return view('questions.index', compact('questions', 'users'));
+        $criterias = Criteria::get();
+        return view('questions.index', compact('questions', 'users', 'criterias'));
     }
 
     /**

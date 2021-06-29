@@ -1,5 +1,8 @@
 @extends('layouts.app')
-
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="{{ route('photographers.index') }}">Pilih Fotografer</a></li>
+    <li class="breadcrumb-item active">Tambah Foto</li>
+@endsection
 @section('content')
     <div class="row justify-content-center">
         <div class="col md-10">

@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ScoreRequest;
-use App\Http\Requests\UpdateScoreRequest;
-use App\Models\Criteria;
-use App\Models\Questionnaire;
 use App\Models\User;
 use App\Models\Score;
+use App\Models\Criteria;
 use Illuminate\Http\Request;
+use App\Models\Questionnaire;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\ScoreRequest;
+use App\Http\Requests\UpdateScoreRequest;
 
 class ScoreController extends Controller
 {
@@ -43,13 +44,24 @@ class ScoreController extends Controller
         $request->validated();
 
         $criterias = Criteria::find($request->criterias);
-        foreach ($criterias as $criteria) {
-            Score::create([
-                'user_id' => $user->id,
-                'criteria_id' => $criteria->id,
-                'score' => $request->score[$criteria->id],
+        $score = 0;
+
+        DB::transaction(function () use ($criterias, $user, $score, $request) {
+
+            foreach ($criterias as $criteria) {
+                Score::create([
+                    'user_id' => $user->id,
+                    'criteria_id' => $criteria->id,
+                    'score' => $request->score[$criteria->id],
+                ]);
+                $score += $request->score[$criteria->id];
+            }
+
+            $user->update([
+                'score' => $score,
             ]);
-        }
+        });
+
         session()->flash('success', 'Penilaian telah berhasil dibuat!');
         return redirect('questions');
     }
@@ -105,11 +117,17 @@ class ScoreController extends Controller
     {
         $request->validated();
 
+        $scores = 0;
         foreach ($user->scores as $score) {
             $score->update([
                 'score' => $request->score[$score->id],
+
             ]);
+            $scores += $request->score[$score->id];
         }
+        $user->update([
+            'score' => $scores,
+        ]);
         session()->flash('success', 'Penilaian telah berhasil diperbarui!');
         return redirect('questions');
     }

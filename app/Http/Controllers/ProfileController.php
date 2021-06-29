@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Creation;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -46,7 +47,11 @@ class ProfileController extends Controller
      */
     public function show(User $user)
     {
-        return view('profiles.show', compact('user'));
+        $projects = Creation::query()
+            ->where('user_id', $user->id)
+            ->latest()
+            ->get();
+        return view('profiles.show', compact('user', 'projects'));
     }
 
     /**
@@ -57,6 +62,7 @@ class ProfileController extends Controller
      */
     public function edit(User $user)
     {
+
         return view('profiles.edit', compact('user'));
     }
 

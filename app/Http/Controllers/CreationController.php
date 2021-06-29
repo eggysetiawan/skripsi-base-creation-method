@@ -53,7 +53,7 @@ class CreationController extends Controller
         });
 
         session()->flash('success', 'Album Berhasil dibuat');
-        return back();
+        return redirect()->route('photographer.show', auth()->user()->username);
     }
 
     /**

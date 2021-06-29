@@ -29,7 +29,8 @@ class User extends Authenticatable implements HasMedia
         'last_name',
         'bio',
         'mobile',
-        'brand'
+        'brand',
+        'score'
     ];
 
     /**

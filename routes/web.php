@@ -15,6 +15,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::view('about', 'about')->name('about');
+Route::view('service', 'service')->name('service');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [HomeController::class, 'index'])->name('home');

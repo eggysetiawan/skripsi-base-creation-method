@@ -85,17 +85,28 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Fotografer</th>
+                                        @foreach ($criterias as $criteria)
+                                            <th>{{ ucfirst($criteria->name) }}</th>
+                                        @endforeach
+                                        <th>Total</th>
                                         <th></th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    @foreach ($users as $user)
+                                    @forelse ($users as $user)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $user->name }}</td>
+
+                                            @foreach ($user->scores as $score)
+                                                <td>
+                                                    {{ $score->score }}
+                                                </td>
+                                            @endforeach
+                                            <td>{{ $user->score }}</td>
                                             <td>
-                                                @if ($user->has('scores'))
+                                                @if ($user->score)
                                                     <a href="{{ route('scores.edit', $user->username) }}"
                                                         class="btn btn-info">Edit Penilaian.</a>
                                                 @else
@@ -104,7 +115,13 @@
                                                 @endif
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+
+                                        <tr>
+                                            <td colspan="9" class="text-center">Belum ada Fotografer yang mengisi kuisioner.
+                                            </td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>

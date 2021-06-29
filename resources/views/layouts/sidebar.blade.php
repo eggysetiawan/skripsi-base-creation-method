@@ -1,9 +1,12 @@
 <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-hide" id="sidebar">
+    @role('photographer')
     <div class="c-sidebar-brand d-md-down-none">
         <img src="{{ asset('images/default1.jpg') }}" alt="Profile Picture" class="rounded-circle mt-3" width="85">
     </div>
+    @endrole
     <div class="c-sidebar-brand d-md-down-none">
-        <a href="{{ route('profiles.show', auth()->user()->username) }}">{{ ucfirst(auth()->user()->name) }}</a>
+        <a
+        href="@hasrole('photographer') {{ route('profiles.show', auth()->user()->username) }} @else # @endhasrole">{{ ucfirst(auth()->user()->name) }}</a>
     </div>
 
     <ul class="c-sidebar-nav">
@@ -14,6 +17,7 @@
                 <i class="c-sidebar-nav-icon cil-home"></i>Dashboard
             </a>
         </li>
+        @hasrole('superadmin|photographer')
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link{{ request()->segment(1) == 'profiles' ? ' c-active' : '' }}"
                 href="{{ route('profiles.edit', auth()->user()->username) }}">
@@ -31,7 +35,14 @@
                 <i class="c-sidebar-nav-icon cil-info"></i>Jadwal
             </a>
         </li>
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="{{ route('questionnaires.index') }}">
+                <i class="c-sidebar-nav-icon cil-clipboard"></i>Isi Kuisioner
+            </a>
+        </li>
+        @endhasrole
 
+        @hasrole('superadmin|admin')
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="{{ route('photographers.index') }}">
                 <i class="c-sidebar-nav-icon cil-camera"></i>Fotografer
@@ -45,17 +56,17 @@
         </li>
 
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="{{ route('questionnaires.index') }}">
-                <i class="c-sidebar-nav-icon cil-clipboard"></i>Isi Kuisioner
-            </a>
-        </li>
-
-        <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="{{ route('criterias.index') }}">
                 <i class="c-sidebar-nav-icon cil-list-rich"></i>Kriteria
             </a>
         </li>
 
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="{{ route('about') }}">
+                <i class="c-sidebar-nav-icon cil-contact"></i>About
+            </a>
+        </li>
+        @endhasrole
         <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                           document.getElementById('logout-form').submit();">
@@ -65,11 +76,6 @@
             </a>
         </li>
 
-        <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="{{ route('about') }}">
-                <i class="c-sidebar-nav-icon cil-contact"></i>About
-            </a>
-        </li>
 
     </ul>
 

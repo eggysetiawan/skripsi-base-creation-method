@@ -9,10 +9,27 @@
         <i class="cil-menu"></i>
     </button>
     <ul class="c-header-nav d-md-down-none">
-        <li class="c-header-nav-item px-3"><a class="c-header-nav-link"
-                href="#">{{ ucfirst(
+        <li class="c-header-nav-item px-3">
+            <strong> {{ ucfirst(
     auth()->user()->getRoleNames()->first(),
-) }}</a></li>
+) }}</strong>
+        </li>
+        <div style="border-left:1px solid #000;height:45px"></div>
+        <li class="c-header-nav-item px-3">
+            <a class="c-header-nav-link" href="{{ route('photographers.index') }}">
+                Fotografer
+            </a>
+        </li>
+        <li class="c-header-nav-item px-3">
+            <a class="c-header-nav-link" href="{{ route('service') }}">
+                Service
+            </a>
+        </li>
+        <li class="c-header-nav-item px-3">
+            <a class="c-header-nav-link" href="{{ route('about') }}">
+                About
+            </a>
+        </li>
         {{-- <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Users</a></li>
         <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Settings</a></li> --}}
     </ul>
@@ -46,13 +63,11 @@
             </div>
         </li> --}}
     </ul>
-    {{-- <div class="c-subheader px-3">
+    <div class="c-subheader px-3">
 
         <ol class="breadcrumb border-0 m-0">
-            <li class="breadcrumb-item">Home</li>
-            <li class="breadcrumb-item"><a href="#">Admin</a></li>
-            <li class="breadcrumb-item active">Dashboard</li>
-
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+            @yield('breadcrumb')
         </ol>
-    </div> --}}
+    </div>
 </header>

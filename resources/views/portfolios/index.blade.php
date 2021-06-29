@@ -17,8 +17,7 @@
                     {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> --}}
                 </div>
             </div>
-
-            {{-- <livewire:portfolios.index :key="$user->id" :user="$user"> --}}
+            <livewire:photographers.album :key="$user->id" :user="$user" />
         </div>
     </div>
 @endsection
