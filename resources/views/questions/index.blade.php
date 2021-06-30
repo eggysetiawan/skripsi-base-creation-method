@@ -88,7 +88,7 @@
                                         @foreach ($criterias as $criteria)
                                             <th>{{ ucfirst($criteria->name) }}</th>
                                         @endforeach
-                                        <th>Total</th>
+                                        {{-- <th>Total</th> --}}
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -100,11 +100,11 @@
                                             <td>{{ $user->name }}</td>
 
                                             @foreach ($user->scores as $score)
-                                                <td>
+                                                <td class="text-center">
                                                     {{ $score->score }}
                                                 </td>
                                             @endforeach
-                                            <td>{{ $user->score }}</td>
+                                            {{-- <td>{{ $user->score }}</td> --}}
                                             <td>
                                                 @if ($user->score)
                                                     <a href="{{ route('scores.edit', $user->username) }}"

@@ -1696,3 +1696,7 @@ section {
     background-color: #666;
     color: white;
 }
+
+.border-service {
+    border-style: double;
+}
