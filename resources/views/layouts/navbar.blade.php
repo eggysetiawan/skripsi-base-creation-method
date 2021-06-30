@@ -16,7 +16,7 @@
         </li>
         <div style="border-left:1px solid #000;height:45px"></div>
         <li class="c-header-nav-item px-3">
-            <a class="c-header-nav-link" href="{{ route('photographers.index') }}">
+            <a class="c-header-nav-link" href="{{ route('find.photographers') }}">
                 Fotografer
             </a>
         </li>

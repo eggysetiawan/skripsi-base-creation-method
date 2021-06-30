@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Criteria;
 use Illuminate\Http\Request;
 
 class FindPhotographerController extends Controller
@@ -12,7 +13,7 @@ class FindPhotographerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function __invoke()
     {
         return view('photographers.find');
     }
