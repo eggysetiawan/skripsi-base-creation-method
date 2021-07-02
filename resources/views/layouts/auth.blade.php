@@ -16,7 +16,7 @@
 
 </head>
 
-<body class="c-app flex-row align-items-center" data-new-gr-c-s-check-loaded="14.1012.0" data-gr-ext-installed="">
+<body class="c-app flex-row align-items-center mb-4" data-new-gr-c-s-check-loaded="14.1012.0" data-gr-ext-installed="">
     @yield('content')
 </body>
 
