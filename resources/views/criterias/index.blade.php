@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+
+@section('breadcrumb')
+    <li class="breadcrumb-item active">Kriteria</li>
+@endsection
+
 @section('content')
 
 

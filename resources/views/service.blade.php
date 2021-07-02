@@ -15,8 +15,8 @@
     </div>
 
     <div class="row align-items-center">
-        <div class="col-md-3" style="border-style: double;">
-            <div class="text-center"><i class="cil-camera text-warning" style="font-size:100px; "></i></div>
+        <div class="col-md-3" style="border-style: none;">
+            <div class="text-center"><i class="fas fa-camera text-warning" style="font-size:100px; "></i></div>
             <div>
                 <p class="text-center" style="font-size: 14px;font-weight:bold">Complete Photography Service.</p>
                 <p class="text-center">
@@ -25,8 +25,8 @@
             </div>
         </div>
 
-        <div class="col-md-3" style="border-style: double;">
-            <div class="text-center"><i class="cil-cash text-info" style="font-size:100px; "></i></div>
+        <div class="col-md-3" style="border-style: none;">
+            <div class="text-center"><i class="fas fa-money-bill-wave-alt text-info" style="font-size:100px; "></i></div>
             <div>
                 <p class="text-center h3">Fixed Rate.</p>
                 <p class="text-center">
@@ -35,8 +35,8 @@
             </div>
         </div>
 
-        <div class="col-md-3" style="border-style: double;">
-            <div class="text-center"><i class="cil-brush text-success" style="font-size:100px; "></i></div>
+        <div class="col-md-3" style="border-style: none;">
+            <div class="text-center"><i class="fas fa-paint-brush text-success" style="font-size:100px; "></i></div>
             <div>
                 <p class="text-center h3">Unlimited Editing.</p>
                 <p class="text-center">
@@ -45,8 +45,8 @@
             </div>
         </div>
 
-        <div class="col-md-3" style="border-style: double;">
-            <div class="text-center"><i class="cil-https text-primary" style="font-size:100px; "></i></div>
+        <div class="col-md-3" style="border-style: none;">
+            <div class="text-center"><i class="fas fa-key text-primary" style="font-size:100px; "></i></div>
             <div>
                 <p class="text-center h3">Secure Payment.</p>
                 <p class="text-center">

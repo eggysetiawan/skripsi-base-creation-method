@@ -13,8 +13,9 @@
                 @foreach ($photographers as $photographer)
                     <div class="col-md-4 mb-5 mt-2">
                         <div class="row">
-                            <img src="{{ asset('images/default.png') }}" alt="{{ auth()->user()->name }}"
-                                class="img-thumbnail mx-auto rounded-circle w-50" height="30">
+                        <img src="@if ($photographer->getFirstMediaUrl('displaypicture')) {{ asset($photographer->getFirstMediaUrl('displaypicture')) }} @else
+                            {{ asset('images/default.png') }} @endif" alt="{{ auth()->user()->name }}"
+                            class="img-thumbnail mx-auto rounded-circle w-50" height="30">
                         </div>
                         <div class="row justify-content-center">
                             <a href="{{ route('photographer.show', $photographer->username) }}"

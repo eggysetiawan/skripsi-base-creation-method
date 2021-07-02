@@ -8,7 +8,7 @@
 @section('content')
 
     <div class="row justify-content-center">
-        <div class="col-md-6" style="height: 100vh">
+        <div class="col-md-6">
 
             <form action="{{ route('scores.rating.store', $user->username) }}" method="post">
                 @csrf
@@ -18,7 +18,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-6" style="overflow-y: scroll;height:62vh">
+        <div class="col-md-6" style="overflow-y: scroll;height:100vh">
             <div class="card">
                 <div class="card-header">Kuisioner <strong>{{ $user->name }}</strong></div>
                 <div class="card-body">

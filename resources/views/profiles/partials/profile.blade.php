@@ -4,8 +4,9 @@
             <div class="card-header"><i class="fa fa-align-justify"></i> Profil Photografer</div>
             <div class="card-body">
                 <div class="text-center">
-                    <img src="{{ asset('images/default1.jpg') }}"
-                        class="rounded rounded-circle img-thumbnail img-fluid" alt="..." width="170">
+                <img src="@if ($user->getFirstMediaUrl('displaypicture')) {{ asset($user->getFirstMediaUrl('displaypicture')) }} @else
+                    {{ asset('images/default.png') }} @endif"
+                    class="rounded rounded-circle img-thumbnail img-fluid" alt="..." width="170">
                     <div>
                         <h5 class="mt-2">{{ $user->name }}</h5>
                     </div>

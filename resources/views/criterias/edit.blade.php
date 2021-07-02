@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('breadcrumb')
+    <li class="breadcrumb-item active"><a href="{{ route('criterias.index') }}">Kriteria</a></li>
+    <li class="breadcrumb-item active">Edit Kriteria</li>
+@endsection
+
+
 @section('content')
 
     <div class="row justify-content-center">

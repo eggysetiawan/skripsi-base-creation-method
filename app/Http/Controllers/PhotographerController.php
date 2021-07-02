@@ -17,7 +17,7 @@ class PhotographerController extends Controller
     public function index()
     {
         $photographers = User::query()
-            ->with('roles')
+            ->with('roles', 'media')
             ->whereHas('roles', function ($query) {
                 return $query->where('name', 'photographer');
             })

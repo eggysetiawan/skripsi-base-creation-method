@@ -84,6 +84,18 @@ class ProfileController extends Controller
             'mobile' => $request->mobile,
             'bio' => $request->bio,
         ]);
+
+        if ($request->has('img')) {
+            if (!$user->getFirstMediaUrl('displaypicture')) {
+                $user->addMediaFromRequest('img')
+                    ->toMediaCollection('displaypicture');
+            } else {
+                $user->media()->delete();
+                $user->addMediaFromRequest('img')
+                    ->toMediaCollection('displaypicture');
+            }
+        }
+
         session()->flash('success', 'Profile berhasil diupdate!');
         return back();
     }

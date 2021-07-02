@@ -1,5 +1,6 @@
 <div>
-    <form action="{{ route('profiles.update', auth()->user()->username) }}" method="POST" autocomplete="off">
+    <form action="{{ route('profiles.update', auth()->user()->username) }}" method="POST" autocomplete="off"
+        enctype="multipart/form-data">
         @csrf
         @method('patch')
         <div class="card-body">
@@ -84,6 +85,15 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="displaypicture">Foto Profile</label>
+                    <input type="file" name="img" id="img" class="form-control" wire:model="img">
+                    @if ($user->getFirstMediaUrl('displaypicture'))
+                        <img src="{{ $user->getFirstMediaUrl('displaypicture') }}" alt="{{ $user->name }}"
+                            width="150px" class="img-thumbnail mt-2">
+                    @endif
                 </div>
             </div>
 

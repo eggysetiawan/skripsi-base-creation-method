@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="d-flex justify-content-center">
-        <div class="col-md-9">
+        <div class="col-md-12">
             <x-alert-success />
 
 
@@ -88,7 +88,6 @@
                                         @foreach ($criterias as $criteria)
                                             <th>{{ ucfirst($criteria->name) }}</th>
                                         @endforeach
-                                        {{-- <th>Total</th> --}}
                                         <th></th>
                                     </tr>
                                 </thead>

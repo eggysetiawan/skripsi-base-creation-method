@@ -5,9 +5,11 @@ namespace App\Http\Livewire\Profiles;
 use App\Models\User;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
+use Livewire\WithFileUploads;
 
 class Edit extends Component
 {
+    use WithFileUploads;
     public $user,
         $brand,
         $username,
@@ -15,7 +17,8 @@ class Edit extends Component
         $last_name,
         $email,
         $mobile,
-        $bio;
+        $bio,
+        $img;
 
     protected $validate;
 
