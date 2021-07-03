@@ -14,7 +14,14 @@
                 @csrf
                 <div class="card">
                     <div class="card-header"><i class="fa fa-align-justify"></i> Penilaian Fotografer</div>
-                    @include('scores.partials._form-control')
+                    <div class="card-body">
+                        <livewire:scores.rating :key="$user->id" :user="$user" />
+                    </div>
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">{{ $update ?? 'Submit' }}</button>
+                    </div>
+
                 </div>
             </form>
         </div>

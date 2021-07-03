@@ -3,16 +3,14 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ScoreController;
-use App\Http\Controllers\{CreationController, CriteriaController, FindPhotographerController, HomeController, PhotographerController, PortfolioController, ProfileController, QuestionController, ScheduleController, RegisterController, RegistrationController, QuestionnaireController};
+use App\Http\Controllers\{CreationController, CriteriaController, FindPhotographerController, HomeController, LandingPageController, PhotographerController, PortfolioController, ProfileController, QuestionController, ScheduleController, RegisterController, RegistrationController, QuestionnaireController};
 
+Auth::routes();
 
 Route::resource('registrations', RegistrationController::class);
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+Route::get('/', LandingPageController::class);
 
-Auth::routes();
 
 Route::view('about', 'about')->name('about');
 Route::view('service', 'service')->name('service');

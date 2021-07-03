@@ -85,7 +85,10 @@ class ScoreController extends Controller
      */
     public function edit(User $user)
     {
-        $scores = Score::with('criteria')->whereHas('criteria')->get();
+        $scores = Score::with('criteria')
+            ->whereHas('criteria')
+            ->where('user_id', $user->id)
+            ->get();
 
         $questionnaires = Questionnaire::query()
             ->with('question', 'author')

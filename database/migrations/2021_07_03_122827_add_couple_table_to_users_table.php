@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCriteriasTable extends Migration
+class AddCoupleTableToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateCriteriasTable extends Migration
      */
     public function up()
     {
-        Schema::create('criterias', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->double('score');
+        Schema::table('users', function (Blueprint $table) {
+            $table->double('maut_score')->after('score')->nullable();
+            $table->double('bcm_score')->after('maut_score')->nullable();
         });
     }
 
@@ -27,6 +26,8 @@ class CreateCriteriasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('criterias');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 }

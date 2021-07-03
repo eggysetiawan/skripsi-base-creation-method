@@ -99,19 +99,29 @@
                                             <td>{{ $user->name }}</td>
 
                                             @foreach ($user->scores as $score)
-                                                <td class="text-center">
+                                                <td class="text-center font-weight-bold">
                                                     {{ $score->score }}
                                                 </td>
                                             @endforeach
                                             {{-- <td>{{ $user->score }}</td> --}}
-                                            <td>
-                                                @if ($user->score)
+                                            @if ($user->score)
+                                                <td>
                                                     <a href="{{ route('scores.edit', $user->username) }}"
-                                                        class="btn btn-info">Edit Penilaian.</a>
-                                                @else
+                                                        class="btn btn-warning">Edit Penilaian.</a>
+                                                </td>
+                                            @else
+                                                <td class="text-center">-</td>
+                                                <td class="text-center">-</td>
+                                                <td class="text-center">-</td>
+                                                <td class="text-center">-</td>
+                                                <td class="text-center">-</td>
+                                                <td class="text-center">-</td>
+
+                                                <td>
                                                     <a href="{{ route('scores.rating', $user->username) }}"
                                                         class="btn btn-success">Berikan Penilaian.</a>
-                                                @endif
+                                                </td>
+                                            @endif
                                             </td>
                                         </tr>
                                     @empty

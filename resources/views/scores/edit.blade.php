@@ -16,18 +16,7 @@
                 <div class="card">
                     <div class="card-header"><i class="fa fa-align-justify"></i> Penilaian Fotografer</div>
                     <div class="card-body">
-                        <div class="row justify-content-center">
-                            @foreach ($scores as $score)
-                                <div class="form-group">
-                                    <div class="col-md-6">
-                                        <label
-                                            for="score.{{ $score->criteria->id }}">{{ $score->criteria->name }}</label>
-                                        <input type="number" class="form-control" name="score[{{ $score->id }}] "
-                                            id="score.{{ $score->id }}" min="0" value="{{ $score->score }}">
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
+                        <livewire:scores.edit :key="$user->id" :user="$user" />
                     </div>
 
                     <div class="card-footer">
@@ -37,7 +26,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-6" style="overflow-y: scroll;height:62vh">
+        <div class="col-md-6" style="overflow-y: scroll;height:100vh">
             <div class="card">
                 <div class="card-header">Kuisioner <strong>{{ $user->name }}</strong></div>
                 <div class="card-body">
