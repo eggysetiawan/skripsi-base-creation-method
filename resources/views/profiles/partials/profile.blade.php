@@ -44,8 +44,7 @@
                                     style="object-fit: cover;">
 
                                 <div class="card-body">
-                                    <a class="card-text stretched-link display-4"
-                                        href="{{ route('creations.show', $project->slug) }}">
+                                    <a class="card-text stretched-link display-4" href="#!">
                                         <blockquote class="blockquote text-center">
                                             <p class="mb-0">{{ Str::limit($project->description, 25, '...') }}</p>
                                             <footer class="blockquote-footer">
