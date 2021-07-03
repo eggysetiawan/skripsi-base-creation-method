@@ -53,8 +53,7 @@
         </li>
 
         @endhasrole
-
-        @hasrole('superadmin|admin')
+        @hasrole('customer|admin|superadmin')
         <li class="nav-item">
             <a href="{{ route('photographers.index') }}"
                 class="nav-link{{ request()->segment(1) == 'photographers' ? ' active' : '' }}">
@@ -64,7 +63,9 @@
                 </p>
             </a>
         </li>
+        @endhasrole
 
+        @hasrole('superadmin|admin')
         <li class="nav-item">
             <a href="{{ route('questions.index') }}"
                 class="nav-link{{ request()->segment(1) == 'questions' ? ' active' : '' }}">
