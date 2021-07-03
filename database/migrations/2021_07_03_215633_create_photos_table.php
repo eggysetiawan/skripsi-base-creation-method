@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMautMethodsTable extends Migration
+class CreatePhotosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateMautMethodsTable extends Migration
      */
     public function up()
     {
-        Schema::create('maut_methods', function (Blueprint $table) {
+        Schema::create('photos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('criteria_id')->constrained('criterias')->cascadeOnDelete();
-            $table->double('weight');
-            $table->double('min');
-            $table->double('max');
+            $table->timestamps();
         });
     }
 
@@ -29,6 +26,6 @@ class CreateMautMethodsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('maut_methods');
+        Schema::dropIfExists('photos');
     }
 }

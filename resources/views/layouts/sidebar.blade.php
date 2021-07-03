@@ -63,6 +63,16 @@
                 </p>
             </a>
         </li>
+
+        <li class="nav-item">
+            <a href="{{ route('photos.index') }}"
+                class="nav-link{{ request()->segment(1) == 'photos' ? ' active' : '' }}">
+                <i class="nav-icon fab fa-envira"></i>
+                <p>
+                    Browse Foto
+                </p>
+            </a>
+        </li>
         @endhasrole
 
         @hasrole('superadmin|admin')

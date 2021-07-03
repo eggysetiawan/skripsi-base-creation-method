@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ScoreController;
-use App\Http\Controllers\{CreationController, CriteriaController, FindPhotographerController, HomeController, LandingPageController, PhotographerController, PortfolioController, ProfileController, QuestionController, ScheduleController, RegisterController, RegistrationController, QuestionnaireController};
+use App\Http\Controllers\{CreationController, CriteriaController, FindPhotographerController, HomeController, LandingPageController, PhotoController, PhotographerController, PortfolioController, ProfileController, QuestionController, ScheduleController, RegisterController, RegistrationController, QuestionnaireController};
 
 Auth::routes();
 
@@ -27,6 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::get('find-photographers', FindPhotographerController::class)->name('find.photographers');
 
     Route::resource('portfolios', PortfolioController::class);
+
+    Route::resource('photos', PhotoController::class);
 
     Route::get('photographers', [PhotographerController::class, 'index'])->name('photographers.index');
     Route::get('photographers/{user:username}', [PhotographerController::class, 'show'])->name('photographer.show');
