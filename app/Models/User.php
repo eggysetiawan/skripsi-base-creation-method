@@ -52,6 +52,17 @@ class User extends Authenticatable implements HasMedia
         'email_verified_at' => 'datetime',
     ];
 
+    public static function allPhotographers($query)
+    {
+        return static::query()
+            ->with('roles', 'media')
+            ->whereHas('roles', function ($query) {
+                return $query->where('name', 'photographer');
+            })
+            ->where('name', 'like', "%$query%")
+            ->get();
+    }
+
     // relations
     public function creations()
     {
