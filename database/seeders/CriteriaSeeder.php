@@ -15,8 +15,8 @@ class CriteriaSeeder extends Seeder
      */
     public function run()
     {
-        $criterias = ['capacity', 'duration', 'professionality', 'rate', 'service', 'technology'];
-        $scores = [2, 1, 5, 3, 4, 3];
+        $criterias = ['harga', 'capacity', 'durasi', 'teknologi', 'service', 'profesionalitas'];
+        // $scores = [2, 1, 5, 3, 4, 3];
 
         foreach ($criterias as $criteria) {
             Criteria::create([

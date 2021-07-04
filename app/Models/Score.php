@@ -11,6 +11,8 @@ class Score extends Model
 
     protected $guarded = [];
 
+    public $timestamps = false;
+
     public function photographer()
     {
         return $this->belongsTo(User::class, 'user_id');

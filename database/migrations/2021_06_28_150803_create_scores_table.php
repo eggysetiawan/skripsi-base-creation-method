@@ -18,7 +18,6 @@ class CreateScoresTable extends Migration
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('criteria_id')->constrained('criterias')->cascadeOnDelete();
             $table->double('score');
-            $table->timestamps();
         });
     }
 

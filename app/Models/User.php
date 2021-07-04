@@ -63,6 +63,27 @@ class User extends Authenticatable implements HasMedia
             ->get();
     }
 
+    public static function photographers()
+    {
+        return static::query()
+            ->with('roles', 'media')
+            ->whereHas('roles', function ($query) {
+                return $query->where('name', 'photographer');
+            })
+            ->get();
+    }
+
+    public static function photographerScore()
+    {
+        return static::query()
+            ->with('scores')
+            ->has('scores')
+            ->whereHas('roles', function ($query) {
+                return $query->where('name', 'photographer');
+            })
+            ->get();
+    }
+
     // relations
     public function creations()
     {

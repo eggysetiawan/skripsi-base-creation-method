@@ -12,12 +12,12 @@ class Edit extends Component
     public $scores;
     public $score;
 
-    public $capacity;
-    public $duration;
-    public $professionality;
-    public $rate;
+    public $harga;
+    public $durasi;
+    public $teknologi;
     public $service;
-    public $technology;
+    public $capacity;
+    public $profesionalitas;
 
     public function mount()
     {
@@ -30,12 +30,13 @@ class Edit extends Component
         // dd($this->scores[0]->score);
 
         $this->score = collect();
-        $this->capacity = $this->scores[0]->score;
-        $this->duration = $this->scores[1]->score;
-        $this->professionality = $this->scores[2]->score;
-        $this->rate = $this->scores[3]->score;
-        $this->service = $this->scores[4]->score;
-        $this->technology = $this->scores[5]->score;
+
+        $this->harga = $this->scores[0]->score;
+        $this->durasi = $this->scores[1]->score;
+        $this->teknologi = $this->scores[2]->score;
+        $this->service = $this->scores[3]->score;
+        $this->capacity = $this->scores[4]->score;
+        $this->profesionalitas = $this->scores[5]->score;
     }
     public function render()
     {

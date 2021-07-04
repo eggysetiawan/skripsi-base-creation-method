@@ -15,7 +15,7 @@
 
                 <div class="list-group" id="list-tab" role="tablist">
 
-                    @if ($user->username == auth()->user()->name)
+                    @if ($user->username == auth()->user()->name || auth()->user()->username == 'superadmin')
                         <a href="{{ route('creations.create') }}" class="card-text align-items-center">Tambah Foto</a>
                         <hr>
                     @endif

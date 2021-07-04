@@ -79,7 +79,7 @@
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
                         data-parent="#accordionExample">
                         <div class="card-body dt-responsive">
-                            <table class="table table-borderless">
+                            <table class="table table-striped table-hover">
 
                                 <thead>
                                     <tr>

@@ -12,24 +12,24 @@ class Rating extends Component
     public $criterias;
     public $criteria;
 
-    public $capacity;
-    public $duration;
-    public $professionality;
-    public $rate;
+    public $harga;
+    public $durasi;
+    public $teknologi;
     public $service;
-    public $technology;
+    public $capacity;
+    public $profesionalitas;
 
     public function mount()
     {
         $this->criterias = Criteria::all();
         $this->criteria = collect();
 
-        $this->capacity = 0;
-        $this->duration = 0;
-        $this->professionality = 0;
-        $this->rate = 0;
+        $this->harga = 0;
+        $this->durasi = 0;
+        $this->teknologi = 0;
         $this->service = 0;
-        $this->technology = 0;
+        $this->capacity = 0;
+        $this->profesionalitas = 0;
     }
 
     public function render()
