@@ -27,7 +27,8 @@ class CreationController extends Controller
      */
     public function create()
     {
-        return view('creations.create');
+        $creation = new Creation();
+        return view('creations.create', compact('creation'));
     }
 
     /**
@@ -75,7 +76,7 @@ class CreationController extends Controller
      */
     public function edit(Creation $creation)
     {
-        //
+        return view('creations.edit', compact('creation'));
     }
 
     /**
@@ -85,9 +86,12 @@ class CreationController extends Controller
      * @param  \App\Models\Creation  $creation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Creation $creation)
+    public function update(CreationRequest $request, Creation $creation)
     {
-        //
+        $attr = $request->validated();
+        $creation->update($attr);
+        session()->flash('success', 'Album telah berhasil diupdate!');
+        return redirect()->route('photographer.show', auth()->user()->username);
     }
 
     /**
@@ -98,6 +102,9 @@ class CreationController extends Controller
      */
     public function destroy(Creation $creation)
     {
-        //
+        $creation->delete();
+        $creation->media()->delete();
+        session()->flash('success', 'Album telah berhasil dihapus!');
+        return back();
     }
 }

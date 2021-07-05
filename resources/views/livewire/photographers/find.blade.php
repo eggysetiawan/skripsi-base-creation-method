@@ -1,16 +1,6 @@
 <div>
     <div class="row justify-content-center">
         <div class="col-md-12">
-            @if ($errors->any())
-                <div class="alert alert-danger alert-dismissible">
-                    <h5><i class="icon fas fa-exclamation-triangle"></i> Whoops! something error.</h5>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             <div class="card">
                 <div class="card-header"> Find Fotografer</div>
                 <div class="card-body">
@@ -166,7 +156,9 @@
                                                                 Fotografer</a>
                                                         </div>
                                                         <div class="mt-2">
-                                                            <a href="#" class="btn btn-info btn-sm">Lihat Profil</a>
+                                                            <a href="{{ route('photographer.show', $maut['username']) }}"
+                                                                class="btn btn-info btn-sm" target="_blank">Lihat
+                                                                Profil</a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -206,7 +198,9 @@
                                                                 Fotografer</a>
                                                         </div>
                                                         <div class="mt-2">
-                                                            <a href="#" class="btn btn-info btn-sm">Lihat Profil</a>
+                                                            <a href="{{ route('photographer.show', $weighted['username']) }}"
+                                                                class="btn btn-info btn-sm" target="_blank">Lihat
+                                                                Profil</a>
                                                         </div>
                                                     </div>
                                                 </td>

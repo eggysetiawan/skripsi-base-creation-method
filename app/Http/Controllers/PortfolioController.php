@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Creation;
 use App\Models\Portfolio;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,14 @@ class PortfolioController extends Controller
      */
     public function index()
     {
+        $creations = Creation::query()
+            ->where('user_id', auth()->id())
+            ->latest()
+            ->get();
+
         return view('portfolios.index', [
             'user' => auth()->user(),
+            'creations' => $creations,
         ]);
     }
 

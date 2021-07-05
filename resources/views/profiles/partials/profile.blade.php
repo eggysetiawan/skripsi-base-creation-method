@@ -1,4 +1,9 @@
 <div class="row justify-content-center">
+    <div class="col-md-12">
+        <x-alert />
+    </div>
+</div>
+<div class="row justify-content-center">
     <div class="col-lg-3">
         <div class="card">
             <div class="card-header"><i class="fa fa-align-justify"></i> Profil Photografer</div>
@@ -16,7 +21,8 @@
                 <div class="list-group" id="list-tab" role="tablist">
 
                     @if ($user->username == auth()->user()->name || auth()->user()->username == 'superadmin')
-                        <a href="{{ route('creations.create') }}" class="card-text align-items-center">Tambah Foto</a>
+                        <a href="{{ route('creations.create') }}" class="card-text text-center">Tambah
+                            Album</a>
                         <hr>
                     @endif
 
@@ -37,14 +43,26 @@
                 aria-labelledby="list-profile-list">
                 <div class="row justify-content-start">
                     @foreach ($projects as $project)
-                        <div class="col-md-4">
-                            <div class="card" style="width: 18rem;">
+                        <div class="col-md-4" style="margin-right: 100px">
+                            <div class="card" style="width: 18rem;height:25rem">
                                 <img src="{{ asset($project->getFirstMediaUrl('creation')) }}"
-                                    class="card-img-top  img-fluid" alt="{{ $project->slug }}" height="200"
+                                    class="card-img-top img-fluid" alt="{{ $project->slug }}" height="200"
                                     style="object-fit: cover;">
+                                @if ($project->user_id == auth()->id())
+                                    <div class="card-img-overlay text-right pt-0 pr-0">
+                                        <a href="{{ route('creations.edit', $project->id) }}">Edit</a>
+                                        <form class="form-inline d-inline"
+                                            action="{{ route('creations.destroy', $project->id) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="btn btn-link" type="submit"
+                                                onclick="return confirm('Are you sure want to delete this album?')">Hapus</button>
+                                        </form>
+                                    </div>
+                                @endif
 
                                 <div class="card-body">
-                                    <a class="card-text stretched-link display-4" href="#!">
+                                    <a class="card-text display-4" href="#!">
                                         <blockquote class="blockquote text-center">
                                             <p class="mb-0">{{ Str::limit($project->description, 25, '...') }}</p>
                                             <footer class="blockquote-footer">

@@ -103,8 +103,7 @@
                                                     {{ $score->score }}
                                                 </td>
                                             @endforeach
-                                            {{-- <td>{{ $user->score }}</td> --}}
-                                            @if ($user->score)
+                                            @if ($user->has('scores'))
                                                 <td>
                                                     <a href="{{ route('scores.edit', $user->username) }}"
                                                         class="btn btn-warning">Edit Penilaian.</a>

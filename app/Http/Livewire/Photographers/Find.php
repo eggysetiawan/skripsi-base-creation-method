@@ -164,6 +164,7 @@ class Find extends Component
                     'preference' => array_sum($countPreferenceScoreMaut[$photographer->id]),
                     'id' => $photographer->id,
                     'name' => $photographer->name,
+                    'username' => $photographer->username,
                 ];
 
                 // weighted
@@ -171,6 +172,7 @@ class Find extends Component
                     'preference' => array_sum($countPreferenceScoreWeighted[$photographer->id]),
                     'id' => $photographer->id,
                     'name' => $photographer->name,
+                    'username' => $photographer->username,
                 ];
             }
             arsort($preferenceScoreMaut);
@@ -181,6 +183,7 @@ class Find extends Component
                 $sortByMaut[] = [
                     'name' => $score['name'],
                     'preference' => $score['preference'],
+                    'username' => $score['username'],
                 ];
             }
 
@@ -188,6 +191,7 @@ class Find extends Component
                 $sortByWeighted[] = [
                     'name' => $score['name'],
                     'preference' => $score['preference'],
+                    'username' => $score['username'],
                 ];
             }
 

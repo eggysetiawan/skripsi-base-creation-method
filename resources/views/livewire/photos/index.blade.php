@@ -40,38 +40,18 @@
             </span>
         </div>
         <div class="row justify-content-start">
-
-
-            @foreach ($creation->getMedia('creation') as $media)
-                <div class="col-lg-4 mb-4" wire:loading.remove>
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{ asset($media->getFullUrl()) }}" class="card-img-top  img-fluid" alt="..."
-                            height="200" style="object-fit: cover;">
-                        <div class="card-img-overlay">
-                            {{-- <h5 class="card-title "
-                                style="text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;">
-                                {{ $creation->title }}
-                            </h5> --}}
+            @foreach ($creation->getMedia('creation') as $img)
+                <div class="col-md-4 mb-2">
+                    <a href="{{ asset($img->getFullUrl()) }}" data-toggle="lightbox"
+                        data-title="{{ $creation->title }}" data-gallery="gallery">
+                        <div class="creation-image-thumb">
+                            <img src="{{ asset($img->getFullUrl()) }}" class="img-fluid w-100" style="height:16rem"
+                                alt="{{ $creation->title }}" />
                         </div>
-                        <div class="card-body">
-                            <blockquote class="blockquote text-center">
-                                <p class="mb-0">{{ Str::limit($creation->title, 25, '...') }}</p>
-                                <p class="text-muted text-center">{{ $creation->description }}</p>
-                                <a href="{{ route('photographer.show', $creation->author->username) }}"
-                                    class="stretched-link">
-                                    <footer class="blockquote-footer">
-                                        {{ $creation->author->name }}
-                                    </footer>
-                                </a>
-                            </blockquote>
-                        </div>
+                    </a>
 
-
-
-                    </div>
                 </div>
             @endforeach
-
         </div>
     @endforeach
 

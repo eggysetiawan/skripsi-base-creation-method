@@ -25,14 +25,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $categories = Creation::categoryList();
-        // $value = null;
-        // $creations = Creation::allCreations();
+        $creations = Creation::query()
+            ->where('user_id', auth()->id())
+            ->latest()
+            ->get();
 
-        // if ($value) {
-        //     $creations = Creation::creations($value);
-        // }
+        $projects = Creation::query()
+            ->where('user_id', auth()->id())
+            ->latest()
+            ->get();
 
-        return view('home');
+        return view('home', compact('projects', 'creations'));
     }
 }

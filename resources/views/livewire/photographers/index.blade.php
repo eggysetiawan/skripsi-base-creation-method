@@ -24,7 +24,7 @@
                                 <img src="@if ($photographer->getFirstMediaUrl('displaypicture')) {{ asset($photographer->getFirstMediaUrl('displaypicture')) }} @else
                                     {{ asset('images/default.png') }} @endif"
                                     alt="{{ auth()->user()->name }}"
-                                    class="img-thumbnail mx-auto rounded-circle w-50" height="30">
+                                    class="img-thumbnail mx-auto rounded-circle w-50" height="25rem;">
                                 </div>
                                 <div class="row justify-content-center">
                                     <a href="{{ route('photographer.show', $photographer->username) }}"
