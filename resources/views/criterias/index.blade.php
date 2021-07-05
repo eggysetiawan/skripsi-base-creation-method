@@ -21,7 +21,6 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nama Kriteria</th>
-                                <th>Nilai kriteria</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -30,7 +29,6 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ ucfirst($criteria->name) }}</td>
-                                    <td>{{ $criteria->score ?? 0 }}</td>
                                     <td>
                                         <a href="{{ route('criterias.edit', $criteria->slug) }}"
                                             class="btn btn-success">Edit</a>

@@ -16,7 +16,9 @@ class CriteriaController extends Controller
      */
     public function index()
     {
-        $criterias = Criteria::orderBy('name', 'asc')->get();
+        $criterias = Criteria::query()
+            ->with('score')
+            ->orderBy('name', 'asc')->get();
         return view('criterias.index', compact('criterias'));
     }
 
