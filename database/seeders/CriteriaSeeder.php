@@ -15,14 +15,19 @@ class CriteriaSeeder extends Seeder
      */
     public function run()
     {
-        $criterias = ['harga', 'capacity', 'durasi', 'teknologi', 'service', 'profesionalitas'];
-        // $scores = [2, 1, 5, 3, 4, 3];
+        $criterias = ['harga', 'durasi', 'teknologi', 'service', 'capacity', 'profesionalitas'];
+        $max = [2000, 12, 6, 3, 128, 6];
+        $benefit = [0, 0, 1, 1, 1, 1];
 
+        $i = 0;
         foreach ($criterias as $criteria) {
             Criteria::create([
                 'slug' => Str::slug($criteria),
-                'name' => $criteria
+                'name' => $criteria,
+                'max' => $max[$i],
+                'is_benefical' => $benefit[$i],
             ]);
+            $i++;
         }
     }
 }

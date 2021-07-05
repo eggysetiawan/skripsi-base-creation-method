@@ -31,6 +31,9 @@ class Find extends Component
     public $criteriaCollections;
     public $totalCriteriaValue;
     public $category_find;
+    public $mauts;
+    public $weighteds;
+
 
     public function mount()
     {
@@ -50,17 +53,14 @@ class Find extends Component
         $this->service = 0;
         $this->capacity = 0;
         $this->profesionalitas = 0;
+        $this->mauts = '';
+        $this->weighteds = '';
 
         $this->table = false;
     }
 
     public function sortMaut()
     {
-        // $this->criterias = Criteria::all();
-        // $this->criteria = collect();
-
-        // $this->categories = Creation::globalCategory();
-        // $this->category = collect();
         $this->table = true;
         $this->criteriaCollections = collect([
             [
@@ -89,6 +89,14 @@ class Find extends Component
                 'value' =>  $this->profesionalitas,
             ]
         ]);
+        $inputCriteria = [
+            $this->harga,
+            $this->durasi,
+            $this->teknologi,
+            $this->service,
+            $this->capacity,
+            $this->profesionalitas
+        ];
         $this->totalCriteriaValue = $this->criteriaCollections->sum('value');
 
         $weight = [];
@@ -107,19 +115,90 @@ class Find extends Component
                 ->min('score');
         }
 
-        $this->photographers = User::photographerScore();
+        $photographers = User::query()
+            ->with('scores')
+            ->has('scores')
+            ->whereHas('roles', function ($query) {
+                return $query->where('name', 'photographer');
+            })
+            ->when($this->category_find != '', function ($q) {
+                return $q->whereHas('creations', function ($query) {
+                    return $query->where('category', 'like', "%$this->category_find%");
+                });
+            })
+            ->get();
 
-        $alternativeScores = [];
-        foreach ($this->photographers as $photographer) {
-            $i = 0;
-            foreach ($photographer->scores as $score) {
-                $alternativeScores[] = $score->score;
-                $normalizeScore[] = (($score->score - $minCriteria[$i]) / ($maxCriteria[$i] - $minCriteria[$i]));
-                $i++;
+        if ($photographers->count() < 4) {
+            $this->table = false;
+        } else {
+            $this->photographers = $photographers;
+
+            foreach ($this->photographers as $photographer) {
+                $sumPreference = 0;
+                $sumPreferenceWeighted = 0;
+                foreach ($photographer->scores->load('criteria') as $score) {
+                    $checkScore[] = $score->score;
+
+                    // maut
+                    $normalizeScoreMaut = (($checkScore[$score->criteria_id - 1] - $minCriteria[($score->criteria_id - 1)]) / ($maxCriteria[($score->criteria_id - 1)] - $minCriteria[($score->criteria_id - 1)]));
+                    $sumPreference += ($weight[($score->criteria_id - 1)] * $normalizeScoreMaut);
+
+                    $countPreferenceScoreMaut[] = [
+                        $photographer->id => $sumPreference,
+                    ];
+
+                    // weighted
+                    $benefical = $score->score / $minCriteria[$score->criteria_id - 1];
+                    if ($score->criteria->is_benefical == 1) {
+                        $benefical =  $score->score / $maxCriteria[$score->criteria_id - 1];
+                    }
+
+                    $normalizeScoreWeighted = $benefical * $weight[$score->criteria_id - 1];
+                    $sumPreferenceWeighted += $normalizeScoreWeighted;
+
+                    $countPreferenceScoreWeighted[] = [
+                        $photographer->id => $sumPreferenceWeighted,
+                    ];
+                }
+                $preferenceScoreMaut[] = [
+                    'preference' => array_sum($countPreferenceScoreMaut[$photographer->id]),
+                    'id' => $photographer->id,
+                    'name' => $photographer->name,
+                ];
+
+                // weighted
+                $preferenceScoreWeighted[] = [
+                    'preference' => array_sum($countPreferenceScoreWeighted[$photographer->id]),
+                    'id' => $photographer->id,
+                    'name' => $photographer->name,
+                ];
             }
+            arsort($preferenceScoreMaut);
+            arsort($preferenceScoreWeighted);
+
+
+            foreach ($preferenceScoreMaut as $score) {
+                $sortByMaut[] = [
+                    'name' => $score['name'],
+                    'preference' => $score['preference'],
+                ];
+            }
+
+            foreach ($preferenceScoreWeighted as $score) {
+                $sortByWeighted[] = [
+                    'name' => $score['name'],
+                    'preference' => $score['preference'],
+                ];
+            }
+
+            $this->mauts = $sortByMaut;
+            $this->weighteds = $sortByWeighted;
         }
-        dd($normalizeScore);
     }
+
+
+
+
 
     public function render()
     {

@@ -16,7 +16,9 @@ class CreateCriteriasTable extends Migration
         Schema::create('criterias', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->double('score');
+            // $table->double('score');
+            $table->double('max');
+            $table->tinyInteger('is_benefical');
         });
     }
 

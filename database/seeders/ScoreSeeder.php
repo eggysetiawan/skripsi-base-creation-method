@@ -21,9 +21,9 @@ class ScoreSeeder extends Seeder
             ->whereHas('roles', function ($query) {
                 return $query->where('name', 'photographer');
             })
-            ->where('username', '!=', 'seno')
+            // ->where('username', '!=', 'seno')
             ->get();
-        $capacities = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024];
+        $capacities = [1, 2, 4, 8, 16, 32, 64, 128];
 
         foreach ($users as $user) {
             $criteriaHarga = Criteria::query()
@@ -34,6 +34,36 @@ class ScoreSeeder extends Seeder
                 'user_id' => $user->id,
                 'criteria_id' => $criteriaHarga->id,
                 'score' => rand(100, 2000),
+            ]);
+
+            $criteriaDurasi = Criteria::query()
+                ->where('name', 'durasi')
+                ->first();
+
+            Score::create([
+                'user_id' => $user->id,
+                'criteria_id' => $criteriaDurasi->id,
+                'score' => rand(1, 12),
+            ]);
+
+            $criteriaTeknologi = Criteria::query()
+                ->where('name', 'teknologi')
+                ->first();
+
+            Score::create([
+                'user_id' => $user->id,
+                'criteria_id' => $criteriaTeknologi->id,
+                'score' => rand(1, 6),
+            ]);
+
+            $criteriaService = Criteria::query()
+                ->where('name', 'service')
+                ->first();
+
+            Score::create([
+                'user_id' => $user->id,
+                'criteria_id' => $criteriaService->id,
+                'score' => rand(1, 3),
             ]);
 
             $randCapacity = array_rand($capacities);
@@ -47,18 +77,16 @@ class ScoreSeeder extends Seeder
                 'score' => $capacities[$randCapacity],
             ]);
 
-            $criteriasExceptHargaAndCapacity = Criteria::query()
-                ->whereNotIn('name', ['harga', 'capacity'])
-                ->get();
 
-            foreach ($criteriasExceptHargaAndCapacity as $criteria) {
-                $randomScore = rand(1, 15);
-                Score::create([
-                    'user_id' => $user->id,
-                    'criteria_id' => $criteria->id,
-                    'score' => $randomScore,
-                ]);
-            }
+            $criteriaProfesionalitas = Criteria::query()
+                ->where('name', 'profesionalitas')
+                ->first();
+
+            Score::create([
+                'user_id' => $user->id,
+                'criteria_id' => $criteriaProfesionalitas->id,
+                'score' => rand(1, 6),
+            ]);
         }
     }
 }
