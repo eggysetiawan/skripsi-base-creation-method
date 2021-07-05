@@ -21,6 +21,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nama Kriteria</th>
+                                <th>Benefical</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -29,6 +30,14 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ ucfirst($criteria->name) }}</td>
+                                    <td>
+                                        @if ($criteria->is_benefical)
+                                            Benefical
+
+                                        @else
+                                            Non benefical
+                                        @endif
+                                    </td>
                                     <td>
                                         <a href="{{ route('criterias.edit', $criteria->slug) }}"
                                             class="btn btn-success">Edit</a>
