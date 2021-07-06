@@ -46,7 +46,7 @@
                                     <td>{{ $schedule->photographer->name }}</td>
                                     <td>{{ $schedule->date }}</td>
                                     <td>{{ $schedule->date }}</td>
-                                    <td>{{ 'no' }}</td>
+                                    <td>{{ $schedule->already_done ? 'Terlaksana' : 'Belum Terlaksana' }}</td>
                                 </tr>
                             @empty
                                 <tr>
