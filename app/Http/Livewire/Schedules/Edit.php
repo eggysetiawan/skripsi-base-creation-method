@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Schedules;
 
 use Livewire\Component;
 use App\Models\Schedule;
+use App\Events\OrderCreated;
+use Illuminate\Support\Facades\DB;
 
 class Edit extends Component
 {
@@ -54,6 +56,19 @@ class Edit extends Component
         $this->noteMaut = $this->schedule->detail->note;
     }
 
+    public function confirmOrder()
+    {
+        DB::transaction(function () {
+            $this->schedule->update([
+                'is_confirmed' => 1,
+            ]);
+            event(new OrderCreated($this->schedule));
+        });
+
+        session()->flash('success', 'Permintaan booking telah dikirimkan ke fotografer');
+        return redirect('schedules');
+    }
+
     public function updateMaut()
     {
         $this->validate();
@@ -63,7 +78,7 @@ class Edit extends Component
             'date' => $this->dateMaut,
         ]);
 
-        $this->schedule->details()->update([
+        $this->schedule->detail()->update([
             'name' => $this->nameMaut,
             'mobile' => $this->mobileMaut,
             'email' => $this->emailMaut,

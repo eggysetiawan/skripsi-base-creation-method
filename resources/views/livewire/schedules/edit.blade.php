@@ -1,8 +1,13 @@
 <div>
-    <button wire:click="editMaut" class="btn btn-success btn-sm" data-toggle="modal"
+    <button wire:click="editMaut" class="btn btn-primary btn-sm" data-toggle="modal"
         data-target="#exampleModalMaut-{{ $schedule->id }}">
-        Pilih Fotografer
+        Edit Pesanan
     </button>
+    <button onclick="confirm('Are you sure?') || event.stopImmediatePropagation()" wire:click="confirmOrder"
+        class="btn btn-success btn-sm">
+        Konfirmasi Order
+    </button>
+
 
     <div class="modal fade" id="exampleModalMaut-{{ $schedule->id }}" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true" wire:ignore>
@@ -30,7 +35,7 @@
                                     <i class="far fa-calendar-alt"></i>
                                 </span>
                             </div>
-                            <input type="date" id="date" wire:model.debounce.120s="dateMaut"
+                            <input type="date" id="date" wire:model.debounce.180s="dateMaut"
                                 class="form-control @error('dateMaut') is-invalid @enderror">
                             @error('dateMaut')
                                 <div class="invalid-feedback">{{ $message }}
@@ -42,39 +47,40 @@
                     {{-- mulai --}}
                     <div class="form-group">
                         <label for="startMaut">Mulai</label>
-                        <input type="time" wire:model.debounce.60s="startMaut" class="form-control" id="startMaut">
+                        <input type="time" wire:model.debounce.180s="startMaut" class="form-control" id="startMaut">
                     </div>
 
                     {{-- selesai --}}
                     <div class="form-group">
                         <label for="endMaut">Selesai</label>
-                        <input type="time" wire:model.debounce.60s="endMaut" class="form-control" id="endMaut">
+                        <input type="time" wire:model.debounce.180s="endMaut" class="form-control" id="endMaut">
                     </div>
 
                     {{-- note --}}
                     <div class="form-group">
                         <label for="noteMaut">Catatan</label>
-                        <textarea wire:model.debounce.60s="noteMaut" id="noteMaut" class="form-control"
+                        <textarea wire:model.debounce.180s="noteMaut" id="noteMaut" class="form-control"
                             placeholder="Berikan catatan untuk sesi foto.."></textarea>
                     </div>
 
                     {{-- name --}}
                     <div class="form-group">
                         <label for="nameMaut">Nama Pemesan</label>
-                        <input type="text" wire:model.debounce.10s="nameMaut" id="nameMaut" class="form-control"
+                        <input type="text" wire:model.debounce.180s="nameMaut" id="nameMaut" class="form-control"
                             value="{{ auth()->user()->name }}" placeholder="Masukan nama customer..">
                     </div>
 
                     {{-- mobile --}}
                     <div class="form-group">
                         <label for="mobileMaut">No Hp</label>
-                        <input type="number" wire:model.debounce.30s="mobileMaut" value="{{ auth()->user()->mobile }}"
-                            id="mobileMaut" class="form-control" placeholder="Masukan nomor Hp customer..">
+                        <input type="number" wire:model.debounce.180s="mobileMaut"
+                            value="{{ auth()->user()->mobile }}" id="mobileMaut" class="form-control"
+                            placeholder="Masukan nomor Hp customer..">
                     </div>
 
                     <div class="form-group">
                         <label for="emailmaut">Alamat Email</label>
-                        <input type="email" wire:model.debounce.10s="emailMaut" id="emailMaut" class="form-control"
+                        <input type="email" wire:model.debounce.180s="emailMaut" id="emailMaut" class="form-control"
                             value="{{ auth()->user()->email }}" placeholder="Masukan email customer..">
                     </div>
 

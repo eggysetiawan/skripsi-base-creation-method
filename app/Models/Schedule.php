@@ -14,12 +14,14 @@ class Schedule extends Model
     public static function getSchedules()
     {
         return static::query()
+            ->with(['customer', 'photographer'])
             ->when(User::with('roles')->find(auth()->id())->roles->first()->name == 'photographer', function ($query) {
                 return $query->where('photographer_id', auth()->id());
             })
             ->when(User::with('roles')->find(auth()->id())->roles->first()->name == 'customer', function ($query) {
-                return $query->where('customer', auth()->id());
+                return $query->where('customer_id', auth()->id());
             })
+            ->where('is_confirmed', 1)
             ->latest()
             ->get();
     }

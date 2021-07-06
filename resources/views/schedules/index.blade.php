@@ -31,7 +31,6 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Nama Kegiatan</th>
                                 <th>Customer</th>
                                 <th>Fotografer</th>
                                 <th>Tanggal Kegiatan</th>
@@ -40,17 +39,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($schedules as $schedule)
+                            @forelse ($schedules as $schedule)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>Kegiatan</td>
-                                    <td>{{ $schedule->customer->name }}</td>
+                                    <td>{{ $schedule->detail->name }}</td>
                                     <td>{{ $schedule->photographer->name }}</td>
                                     <td>{{ $schedule->date }}</td>
                                     <td>{{ $schedule->date }}</td>
                                     <td>{{ 'no' }}</td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center">Belum ada data.</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
 

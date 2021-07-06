@@ -18,7 +18,7 @@ class CreateScheduleDetailsTable extends Migration
             $table->foreignId('schedule_id')->constrained('schedules')->cascadeOnDelete();
             $table->string('name');
             $table->string('mobile', 13);
-            $table->string('email', 100)->nullable()->unique();
+            $table->string('email', 100)->nullable();
             $table->text('address')->nullable();
             $table->time('start');
             $table->time('end');

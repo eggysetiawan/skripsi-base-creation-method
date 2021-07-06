@@ -14,18 +14,6 @@ class ScheduleController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    // public function baseCreation($price, $duration, $service)
-    // {
-    //     $maxPrice = 10000000;
-    //     $maxDuration = 24;
-    //     $maxService = 100;
-
-    //     $getPrice = $price / $maxPrice;
-    //     $getDuration = $duration / $maxDuration;
-    //     $getService = $service / $maxService;
-
-    //     return $getPrice + $getDuration + $getService;
-    // }
 
     public function index()
     {

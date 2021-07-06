@@ -9,6 +9,7 @@ use App\Models\Schedule;
 use App\Models\Score;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Find extends Component
@@ -103,24 +104,24 @@ class Find extends Component
         $this->validate();
 
 
-        $schedule = Schedule::create([
-            'customer_id' => auth()->id(),
-            'photographer_id' => $user->id,
-            'date' => $this->dateMaut,
-            'is_maut' => 1
-        ]);
+        DB::transaction(function () use ($user) {
+            $schedule = Schedule::create([
+                'customer_id' => auth()->id(),
+                'photographer_id' => $user->id,
+                'date' => $this->dateMaut,
+                'is_maut' => 1
+            ]);
 
-        $schedule->detail()->create([
-            'name' => $this->nameMaut,
-            'mobile' => $this->mobileMaut,
-            'email' => $this->emailMaut,
-            'start' => $this->startMaut,
-            'end' => $this->endMaut,
-            'note' => $this->noteMaut
-        ]);
-
-        session()->flash('success', 'Permintaan booking telah dikirimkan ke fotografer');
-        return redirect()->route('schedules.show', $schedule->id);
+            $schedule->detail()->create([
+                'name' => $this->nameMaut,
+                'mobile' => $this->mobileMaut,
+                'email' => $this->emailMaut,
+                'start' => $this->startMaut,
+                'end' => $this->endMaut,
+                'note' => $this->noteMaut
+            ]);
+            return redirect()->route('schedules.show', $schedule->id);
+        });
     }
 
 
