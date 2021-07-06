@@ -2,35 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Schedule;
+use App\Models\ScheduleDetail;
 use Illuminate\Http\Request;
 
-class ScheduleController extends Controller
+class ScheduleDetailController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    // public function baseCreation($price, $duration, $service)
-    // {
-    //     $maxPrice = 10000000;
-    //     $maxDuration = 24;
-    //     $maxService = 100;
-
-    //     $getPrice = $price / $maxPrice;
-    //     $getDuration = $duration / $maxDuration;
-    //     $getService = $service / $maxService;
-
-    //     return $getPrice + $getDuration + $getService;
-    // }
-
     public function index()
     {
-        $schedules = Schedule::getSchedules();
-        return view('schedules.index', compact('schedules'));
+        //
     }
 
     /**
@@ -57,21 +41,21 @@ class ScheduleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Schedule  $schedule
+     * @param  \App\Models\ScheduleDetail  $scheduleDetail
      * @return \Illuminate\Http\Response
      */
-    public function show(Schedule $schedule)
+    public function show(ScheduleDetail $scheduleDetail)
     {
-        return view('schedules.show', compact('schedule'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Schedule  $schedule
+     * @param  \App\Models\ScheduleDetail  $scheduleDetail
      * @return \Illuminate\Http\Response
      */
-    public function edit(Schedule $schedule)
+    public function edit(ScheduleDetail $scheduleDetail)
     {
         //
     }
@@ -80,10 +64,10 @@ class ScheduleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Schedule  $schedule
+     * @param  \App\Models\ScheduleDetail  $scheduleDetail
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Schedule $schedule)
+    public function update(Request $request, ScheduleDetail $scheduleDetail)
     {
         //
     }
@@ -91,10 +75,10 @@ class ScheduleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Schedule  $schedule
+     * @param  \App\Models\ScheduleDetail  $scheduleDetail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Schedule $schedule)
+    public function destroy(ScheduleDetail $scheduleDetail)
     {
         //
     }

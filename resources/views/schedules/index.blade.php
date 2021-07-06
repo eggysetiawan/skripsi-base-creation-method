@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    <x-alert />
     <div class="row justify-content-center">
         <div class="col-md-3">
             <div class="form-group">
@@ -24,31 +25,32 @@
     <div class="row justify-content-center">
         <div class="col-md-9">
             <div class="card">
-                <div class="card-header"><i class="fa fa-align-justify"></i> Schedule</div>
+                <div class="card-header">Schedule</div>
                 <div class="card-body">
                     <table class="table table-responsive-sm table-striped">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Nama Kegiatan</th>
+                                <th>Customer</th>
+                                <th>Fotografer</th>
                                 <th>Tanggal Kegiatan</th>
                                 <th>Waktu Kegiatan</th>
                                 <th>Terlaksana</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 1; $i <= 10; $i++)
+                            @foreach ($schedules as $schedule)
                                 <tr>
-                                    <td>{{ $i }}</td>
-                                    <td>Kegiatan {{ $i }}</td>
-                                    <td>{{ date('d F, Y', strtotime('+' . ($i + rand(1, 30)) . ' days')) }}</td>
-                                    <td>{{ date('H:i', strtotime('+' . ($i + rand(1, 24)) . ' hours')) }}</td>
-                                    <td>
-                                        <a href="#" class="mr-4"><i class="cil-pencil"></i></a>
-                                        <a href="#"><i class="cil-check"></i></a>
-                                    </td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>Kegiatan</td>
+                                    <td>{{ $schedule->customer->name }}</td>
+                                    <td>{{ $schedule->photographer->name }}</td>
+                                    <td>{{ $schedule->date }}</td>
+                                    <td>{{ $schedule->date }}</td>
+                                    <td>{{ 'no' }}</td>
                                 </tr>
-                            @endfor
+                            @endforeach
                         </tbody>
                     </table>
 

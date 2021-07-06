@@ -32,15 +32,7 @@
             </a>
         </li>
 
-        <li class="nav-item">
-            <a href="{{ route('schedules.index') }}"
-                class="nav-link{{ request()->segment(1) == 'schedules' ? ' active' : '' }}">
-                <i class="nav-icon fas fa-calendar-alt"></i>
-                <p>
-                    Jadwal
-                </p>
-            </a>
-        </li>
+
 
         <li class="nav-item">
             <a href="{{ route('questionnaires.index') }}"
@@ -69,7 +61,7 @@
                 class="nav-link{{ request()->segment(1) == 'photos' ? ' active' : '' }}">
                 <i class="nav-icon fab fa-envira"></i>
                 <p>
-                    Browse Foto
+                    Gallery
                 </p>
             </a>
         </li>
@@ -96,6 +88,15 @@
             </a>
         </li>
         @endhasrole
+        <li class="nav-item">
+            <a href="{{ route('schedules.index') }}"
+                class="nav-link{{ request()->segment(1) == 'schedules' ? ' active' : '' }}">
+                <i class="nav-icon fas fa-calendar-alt"></i>
+                <p>
+                    Jadwal
+                </p>
+            </a>
+        </li>
 
         <li class="nav-item">
             <a href="{{ route('about') }}"

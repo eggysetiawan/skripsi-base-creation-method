@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire\Photographers;
 
+use App\Http\Requests\ScheduleRequest;
 use App\Models\Creation;
 use App\Models\Criteria;
+use App\Models\Schedule;
 use App\Models\Score;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class Find extends Component
@@ -34,6 +37,28 @@ class Find extends Component
     public $mauts;
     public $weighteds;
 
+    // maut modal
+    public $photographerMaut;
+    public $dateMaut;
+    public $startMaut;
+    public $endMaut;
+    public $noteMaut;
+    public $nameMaut;
+    public $mobileMaut;
+    public $emailMaut;
+    // public $dateWeighted;
+
+    protected $rules = [
+        'dateMaut' => ['date', 'after_or_equal:today'],
+        'startMaut' => ['required'],
+        'endMaut' => ['required'],
+        'noteMaut' => ['nullable'],
+        'nameMaut' => ['required', 'string'],
+        'mobileMaut' => ['required', 'digits_between:9,13'],
+        'emailMaut' => ['required', 'email'],
+    ];
+
+
 
     public function mount()
     {
@@ -56,47 +81,54 @@ class Find extends Component
         $this->mauts = '';
         $this->weighteds = '';
 
+        $this->dateMaut = date('Y-m-d');
+        // $this->dateWeighted = date('Y-m-d');
+
         $this->table = false;
     }
 
-    public function sortMaut()
+    public function editMaut($name)
+    {
+        $this->photographerMaut = $name;
+        $this->dateMaut = date('Y-m-d');
+        $this->startMaut = date('H:i');
+        $this->endMaut = date('H:i', strtotime('+2hour'));
+        $this->nameMaut = auth()->user()->name;
+        $this->mobileMaut = auth()->user()->mobile;
+        $this->emailMaut = auth()->user()->email;
+    }
+
+    public function orderMaut(User $user)
+    {
+        $this->validate();
+
+
+        $schedule = Schedule::create([
+            'customer_id' => auth()->id(),
+            'photographer_id' => $user->id,
+            'date' => $this->dateMaut,
+            'is_maut' => 1
+        ]);
+
+        $schedule->detail()->create([
+            'name' => $this->nameMaut,
+            'mobile' => $this->mobileMaut,
+            'email' => $this->emailMaut,
+            'start' => $this->startMaut,
+            'end' => $this->endMaut,
+            'note' => $this->noteMaut
+        ]);
+
+        session()->flash('success', 'Permintaan booking telah dikirimkan ke fotografer');
+        return redirect()->route('schedules.show', $schedule->id);
+    }
+
+
+    public function sortMethod()
     {
         $this->table = true;
-        $this->criteriaCollections = collect([
-            [
-                'id' => 1,
-                'value' =>  $this->harga,
-            ],
-            [
-                'id' => 2,
-                'value' =>  $this->durasi,
-            ],
-            [
-                'id' => 3,
-                'value' =>  $this->teknologi,
-            ],
-            [
-                'id' => 4,
-                'value' => $this->service,
-            ],
+        $this->criteriaCollections = $this->getCriteriaCollection();
 
-            [
-                'id' => 5,
-                'value' =>  $this->capacity,
-            ],
-            [
-                'id' => 6,
-                'value' =>  $this->profesionalitas,
-            ]
-        ]);
-        $inputCriteria = [
-            $this->harga,
-            $this->durasi,
-            $this->teknologi,
-            $this->service,
-            $this->capacity,
-            $this->profesionalitas
-        ];
         $this->totalCriteriaValue = $this->criteriaCollections->sum('value');
 
         $weight = [];
@@ -181,6 +213,7 @@ class Find extends Component
 
             foreach ($preferenceScoreMaut as $score) {
                 $sortByMaut[] = [
+                    'id' => $score['id'],
                     'name' => $score['name'],
                     'preference' => $score['preference'],
                     'username' => $score['username'],
@@ -189,6 +222,7 @@ class Find extends Component
 
             foreach ($preferenceScoreWeighted as $score) {
                 $sortByWeighted[] = [
+                    'id' => $score['id'],
                     'name' => $score['name'],
                     'preference' => $score['preference'],
                     'username' => $score['username'],
@@ -202,7 +236,36 @@ class Find extends Component
 
 
 
+    public function getCriteriaCollection()
+    {
+        return collect([
+            [
+                'id' => 1,
+                'value' =>  $this->harga,
+            ],
+            [
+                'id' => 2,
+                'value' =>  $this->durasi,
+            ],
+            [
+                'id' => 3,
+                'value' =>  $this->teknologi,
+            ],
+            [
+                'id' => 4,
+                'value' => $this->service,
+            ],
 
+            [
+                'id' => 5,
+                'value' =>  $this->capacity,
+            ],
+            [
+                'id' => 6,
+                'value' =>  $this->profesionalitas,
+            ]
+        ]);
+    }
 
     public function render()
     {
