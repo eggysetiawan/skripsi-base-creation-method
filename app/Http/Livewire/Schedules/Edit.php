@@ -56,6 +56,15 @@ class Edit extends Component
         $this->noteMaut = $this->schedule->detail->note;
     }
 
+    public function orderApproval()
+    {
+        $this->schedule->update([
+            'is_approved' => 1,
+        ]);
+        session()->flash('success', 'Pesanan telah berhasil di approve!');
+        return redirect('schedules');
+    }
+
     public function confirmOrder()
     {
         DB::transaction(function () {

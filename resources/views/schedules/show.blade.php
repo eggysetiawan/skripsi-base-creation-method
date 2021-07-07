@@ -52,7 +52,8 @@
                     </dl>
                 </div>
 
-                @if (!$schedule->is_confirmed)
+
+                @if (!$schedule->is_confirmed || !$schedule->is_approved)
                     <div class="card-footer">
                         <livewire:schedules.edit :key="$schedule->id" :schedule="$schedule" />
                     </div>

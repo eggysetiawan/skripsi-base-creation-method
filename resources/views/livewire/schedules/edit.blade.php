@@ -1,14 +1,28 @@
 <div>
-    <button wire:click="editMaut" class="btn btn-primary btn-sm" data-toggle="modal"
-        data-target="#exampleModalMaut-{{ $schedule->id }}">
-        Edit Pesanan
-    </button>
-    <button
-        onclick="confirm('apakah anda yakin? Data yang sudah di konfirmasi tidak akan bisa di ubah.') || event.stopImmediatePropagation()"
-        wire:click="confirmOrder" class="btn btn-success btn-sm">
-        Konfirmasi Order
-    </button>
 
+    @if (!$schedule->is_confirmed)
+        <button wire:click="editMaut" class="btn btn-primary btn-sm" data-toggle="modal"
+            data-target="#exampleModalMaut-{{ $schedule->id }}">
+            Edit Pesanan
+        </button>
+        <button
+            onclick="confirm('apakah anda yakin? Data yang sudah di konfirmasi tidak akan bisa di ubah.') || event.stopImmediatePropagation()"
+            wire:click="confirmOrder" class="btn btn-success btn-sm">
+            Konfirmasi Order
+        </button>
+    @endif
+
+
+    @hasrole('photographer|superadmin')
+    @if ($schedule->photographer_id == auth()->id())
+        <button
+            onclick="confirm('apakah anda yakin? Data yang sudah di konfirmasi tidak akan bisa di ubah.') || event.stopImmediatePropagation()"
+            wire:click="orderApproval" class="btn btn-success btn-block">
+            Approve Order
+        </button>
+    @endif
+
+    @endhasrole
 
     <div class="modal fade" id="exampleModalMaut-{{ $schedule->id }}" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true" wire:ignore>
