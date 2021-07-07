@@ -21,7 +21,6 @@ class Schedule extends Model
             ->when(User::with('roles')->find(auth()->id())->roles->first()->name == 'customer', function ($query) {
                 return $query->where('customer_id', auth()->id());
             })
-            ->where('is_confirmed', 1)
             ->latest()
             ->get();
     }

@@ -1,23 +1,12 @@
 <div>
-    <div class="row justify-content-center">
-        <div class="col-md-3">
-            <div class="form-group">
-                <label for="activity_name">Nama Kegiatan</label>
-                <input type="text" class="form-control" id="activity_name" placeholder="Cari kegiatan..">
+    <div class="row justify-content-center mb-3">
+        <div class="col-md-9">
+            <div class="form-group ">
+                <input type="search" wire:model.debounce.500ms="query" class="form-control col-5 float-right"
+                    placeholder="Cari..">
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label for="activity_date">Tanggal Kegiatan</label>
-                <input type="date" name="activity_date" class="form-control" id="activity_date">
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label for="activity_time">Waktu Kegiatan</label>
-                <input type="time" name="activity_time" class="form-control" id="activity_time">
-            </div>
-        </div>
+
     </div>
     <div class="row justify-content-center">
         <div class="col-md-9">
@@ -28,8 +17,12 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                @hasrole('photographer|superadmin|admin')
                                 <th>Customer</th>
+                                @endhasrole
+                                @hasrole('customer|superadmin|admin')
                                 <th>Fotografer</th>
+                                @endhasrole
                                 <th>Tanggal Kegiatan</th>
                                 <th>Waktu Kegiatan</th>
                                 <th>Status</th>
@@ -41,8 +34,12 @@
                             @forelse ($schedules as $schedule)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    @hasrole('photographer|superadmin|admin')
                                     <td>{{ $schedule->detail->name }}</td>
+                                    @endhasrole
+                                    @hasrole('customer|superadmin|admin')
                                     <td>{{ $schedule->photographer->name }}</td>
+                                    @endhasrole
                                     <td>{{ $schedule->date->format('d F, Y') }}</td>
                                     <td>{{ date('H:i', strtotime($schedule->detail->start)) . ' - ' . date('H:i', strtotime($schedule->detail->end)) }}
                                     </td>

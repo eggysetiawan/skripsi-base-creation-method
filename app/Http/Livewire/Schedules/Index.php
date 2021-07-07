@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Schedules;
 
+use App\Models\User;
 use Livewire\Component;
 use App\Models\Schedule;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
@@ -9,9 +10,33 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 class Index extends Component
 {
 
+    public $query = '';
+
     public function getSchedulesProperty()
     {
-        $schedules = Schedule::getSchedules();
+        $schedules = Schedule::query()
+            ->with(['customer', 'photographer', 'detail'])
+            ->when(User::with('roles')->find(auth()->id())->roles->first()->name == 'photographer', function ($query) {
+                return $query->where('photographer_id', auth()->id());
+            })
+            ->when(User::with('roles')->find(auth()->id())->roles->first()->name == 'customer', function ($query) {
+                return $query
+                    ->where('customer_id', auth()->id());
+            })
+            ->where('is_confirmed', 1)
+            ->when(auth()->user()->roles->first()->name == 'photographer', function ($q) {
+                return $q->whereHas('detail', function ($q) {
+                    return $q->where('name', 'like', "%$this->query%");
+                });
+            })
+            ->when(auth()->user()->roles->first()->name == 'customer', function ($q) {
+                return $q->whereHas('photographer', function ($q) {
+                    return $q->where('name', 'like', "%$this->query%");
+                });
+            })
+            ->orWhere('date', 'like', "%$this->query%")
+            ->latest()
+            ->get();
         return $schedules;
     }
 
