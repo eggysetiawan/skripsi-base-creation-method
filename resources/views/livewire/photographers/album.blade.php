@@ -46,7 +46,7 @@
                         data-title="{{ $creation->title . '<br><small class="text-muted">by : ' . $creation->author->name . '</small>' }}"
                         data-gallery="gallery">
                         <div class="creation-image-thumb">
-                            <img src="{{ asset($img->getFullUrl()) }}" class="img-fluid w-100" style="height:16rem"
+                            <img src="{{ asset($img->getFullUrl()) }}" class="img-fluid w-100" style="height:26rem"
                                 alt="{{ $creation->title }}" />
                         </div>
                     </a>
