@@ -89,7 +89,7 @@
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper" style="margin-top: 120px">
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <div class="container-fluid">
