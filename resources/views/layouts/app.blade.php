@@ -42,16 +42,15 @@
                 {{-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8"> --}}
                 <span class="brand-text font-weight-light text-center">{{ config('app.name', 'KONG GRAPHY') }}</span>
-                <div class="text-center">
-                    <img src="{{ asset('images/logo.png') }}" alt="" class="img-fluid w-50">
-                </div>
 
             </a>
 
             <!-- Sidebar -->
             <div class="sidebar">
                 <div class="text-center">
+                    <img src="{{ asset('images/logo.png') }}" alt="" class="img-fluid w-50">
                 </div>
+                <hr>
                 <!-- Sidebar user (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     @hasrole('superadmin|photographer')
