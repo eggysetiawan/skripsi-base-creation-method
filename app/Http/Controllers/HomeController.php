@@ -26,12 +26,16 @@ class HomeController extends Controller
     public function index()
     {
         $creations = Creation::query()
-            ->where('user_id', auth()->id())
+            ->when(auth()->user()->roles()->first()->name == 'photographer', function ($query) {
+                return $query->where('user_id', auth()->id());
+            })
             ->latest()
             ->get();
 
         $projects = Creation::query()
-            ->where('user_id', auth()->id())
+            ->when(auth()->user()->roles()->first()->name == 'photographer', function ($query) {
+                return $query->where('user_id', auth()->id());
+            })
             ->latest()
             ->get();
 

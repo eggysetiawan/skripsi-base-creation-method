@@ -144,11 +144,9 @@
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                 <i class="fas fa-expand-arrows-alt"></i>
             </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                <i class="fas fa-th-large"></i>
-            </a>
         </li> --}}
+        <li class="nav-item">
+            <img src="{{ asset('images/logo.png') }}" class="img-fluid" width="100px" alt="">
+        </li>
     </ul>
 </nav>

@@ -3,7 +3,12 @@
         <x-alert />
     </div>
 </div>
+
+<div class="row justify-content-center mb-4">
+    <a href="{{ route('creations.create') }}" class="text-center">Tambah Album</a>
+</div>
 <div class="row justify-content-center">
+
     <div class="col-lg-3">
         <div class="card">
             <div class="card-header"><i class="fa fa-align-justify"></i> Profil Photografer</div>
@@ -19,6 +24,8 @@
                 <hr>
 
                 <div class="list-group" id="list-tab" role="tablist">
+                    <p>{{ $user->bio }}.</p>
+                    <hr>
 
                     @if ($user->username == auth()->user()->name || auth()->user()->username == 'superadmin')
                         <a href="{{ route('creations.create') }}" class="card-text text-center">Tambah

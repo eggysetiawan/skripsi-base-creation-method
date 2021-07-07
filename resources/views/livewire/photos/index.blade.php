@@ -11,7 +11,7 @@
         <span class="inline-block" wire:loading.remove>
 
             @if ($categories->first())
-                <ul class="list-group list-group-horizontal-md list-group-accent .clist-group-accent h5">
+                <ul class="list-group list-group-horizontal-md list-group-accent .clist-group-accent h5 mt-4">
                     <li class="list-group-item">
                         <a href="#!" wire:click.prevent="all">
                             ALL
@@ -43,7 +43,8 @@
             @foreach ($creation->getMedia('creation') as $img)
                 <div class="col-md-4 mb-2">
                     <a href="{{ asset($img->getFullUrl()) }}" data-toggle="lightbox"
-                        data-title="{{ $creation->title }}" data-gallery="gallery">
+                        data-title="{{ $creation->title . '<br><small class="text-muted">by : ' . $creation->author->name . '</small>' }}"
+                        data-gallery="gallery">
                         <div class="creation-image-thumb">
                             <img src="{{ asset($img->getFullUrl()) }}" class="img-fluid w-100" style="height:16rem"
                                 alt="{{ $creation->title }}" />

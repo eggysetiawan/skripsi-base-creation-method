@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('app.name', 'Willy') }}</title>
-    <link rel="icon" href="{{ asset('images/logo.jpeg') }}">
+    <link rel="icon" href="{{ asset('images/logo.png') }}">
 
 
     <!-- Google Font: Source Sans Pro -->
@@ -28,7 +28,7 @@
 
 </head>
 
-<body class="hold-transition sidebar-mini sidebar-collapse layout-fixed">
+<body class="hold-transition sidebar-mini sidebar-collapse layout-fixed layout-navbar-fixed">
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
@@ -41,11 +41,17 @@
             <a href="{{ route('home') }}" class="brand-link">
                 {{-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8"> --}}
-                <span class="brand-text font-weight-light">{{ config('app.name', 'Laravel') }}</span>
+                <span class="brand-text font-weight-light text-center">{{ config('app.name', 'KONG GRAPHY') }}</span>
+                <div class="text-center">
+                    <img src="{{ asset('images/logo.png') }}" alt="" class="img-fluid w-50">
+                </div>
+
             </a>
 
             <!-- Sidebar -->
             <div class="sidebar">
+                <div class="text-center">
+                </div>
                 <!-- Sidebar user (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     @hasrole('superadmin|photographer')
