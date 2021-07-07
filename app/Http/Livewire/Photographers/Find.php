@@ -109,7 +109,6 @@ class Find extends Component
                 'customer_id' => auth()->id(),
                 'photographer_id' => $user->id,
                 'date' => $this->dateMaut,
-                'is_maut' => 1
             ]);
 
             $schedule->detail()->create([

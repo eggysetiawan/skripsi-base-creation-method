@@ -9,7 +9,7 @@ class Schedule extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $dates = ['date'];
+    protected $dates = ['date', 'start', 'end'];
 
     public static function getSchedules()
     {

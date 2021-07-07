@@ -3,8 +3,9 @@
         data-target="#exampleModalMaut-{{ $schedule->id }}">
         Edit Pesanan
     </button>
-    <button onclick="confirm('Are you sure?') || event.stopImmediatePropagation()" wire:click="confirmOrder"
-        class="btn btn-success btn-sm">
+    <button
+        onclick="confirm('apakah anda yakin? Data yang sudah di konfirmasi tidak akan bisa di ubah.') || event.stopImmediatePropagation()"
+        wire:click="confirmOrder" class="btn btn-success btn-sm">
         Konfirmasi Order
     </button>
 
