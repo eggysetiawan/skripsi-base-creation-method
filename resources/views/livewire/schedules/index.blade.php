@@ -54,6 +54,7 @@
                                             class="btn btn-primary">Detail Pesanan</a>
 
                                         @if (!$schedule->is_approved)
+                                            @hasrole('superadmin|photographer')
                                             <button class="btn btn-warning"
                                                 onclick="confirm('apakah anda yakin? Data yang sudah di approve tidak akan bisa di batalkan.') || event.stopImmediatePropagation()"
                                                 wire:click="orderApproval('{{ $schedule->id }}')"
@@ -61,6 +62,7 @@
                                                 @include('layouts.livewire.loading-button')
                                                 <span wire:loading.remove>Approve Pesanan</span>
                                             </button>
+                                            @endhasrole
                                         @else
                                             @hasrole('superadmin|photographer')
                                             @if (!$schedule->already_done)
