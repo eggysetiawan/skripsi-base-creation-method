@@ -52,37 +52,43 @@
 
                                         @if (!$schedule->is_approved)
                                             @hasrole('superadmin|photographer')
-                                            <button class="btn btn-warning"
-                                                onclick="confirm('apakah anda yakin? Data yang sudah di approve tidak akan bisa di batalkan.') || event.stopImmediatePropagation()"
-                                                wire:click="orderApproval('{{ $schedule->id }}')"
-                                                wire:loading.attr="disabled">
-                                                @include('layouts.livewire.loading-button')
-                                                <span wire:loading.remove>Approve Pesanan</span>
-                                            </button>
+                                            @if ($schedule->photographer_id == auth()->id())
+                                                <button class="btn btn-warning"
+                                                    onclick="confirm('apakah anda yakin? Data yang sudah di approve tidak akan bisa di batalkan.') || event.stopImmediatePropagation()"
+                                                    wire:click="orderApproval('{{ $schedule->id }}')"
+                                                    wire:loading.attr="disabled">
+                                                    @include('layouts.livewire.loading-button')
+                                                    <span wire:loading.remove>Approve Pesanan</span>
+                                                </button>
+                                            @endif
                                             @endhasrole
                                         @else
                                             @hasrole('superadmin|photographer')
                                             @if (!$schedule->already_done)
-                                                <button class="btn btn-info"
-                                                    onclick="confirm('apakah anda yakin?.') || event.stopImmediatePropagation()"
-                                                    wire:click="hasDonePhotographer('{{ $schedule->id }}')"
-                                                    wire:loading.attr="disabled">
-                                                    @include('layouts.livewire.loading-button')
-                                                    <span wire:loading.remove>Sudah Terlaksana</span>
-                                                </button>
+                                                @if ($schedule->photographer_id == auth()->id())
+                                                    <button class="btn btn-info"
+                                                        onclick="confirm('apakah anda yakin?.') || event.stopImmediatePropagation()"
+                                                        wire:click="hasDonePhotographer('{{ $schedule->id }}')"
+                                                        wire:loading.attr="disabled">
+                                                        @include('layouts.livewire.loading-button')
+                                                        <span wire:loading.remove>Sudah Terlaksana</span>
+                                                    </button>
+                                                @endif
                                             @endif
                                             @endhasrole
 
                                             @hasrole('superadmin|customer')
                                             @if (!$schedule->already_done_customer)
-                                                <button class="btn btn-info"
-                                                    onclick="confirm('apakah anda yakin?.') || event.stopImmediatePropagation()"
-                                                    wire:click="hasDoneCustomer('{{ $schedule->id }}')"
-                                                    wire:loading.attr="disabled">
-                                                    @include('layouts.livewire.loading-button')
-                                                    <span wire:loading.remove>Sudah Terlaksana @role('superadmin')
-                                                        (customer) @endrole</span>
-                                                </button>
+                                                @if ($schedule->customer_id == auth()->id())
+                                                    <button class="btn btn-info"
+                                                        onclick="confirm('apakah anda yakin?.') || event.stopImmediatePropagation()"
+                                                        wire:click="hasDoneCustomer('{{ $schedule->id }}')"
+                                                        wire:loading.attr="disabled">
+                                                        @include('layouts.livewire.loading-button')
+                                                        <span wire:loading.remove>Sudah Terlaksana @role('superadmin')
+                                                            (customer) @endrole</span>
+                                                    </button>
+                                                @endif
                                             @endif
                                             @endhasrole
                                         @endif
