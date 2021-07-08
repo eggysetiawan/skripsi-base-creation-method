@@ -28,6 +28,7 @@ class Username extends Component
     {
         $this->requiredField('username');
         $this->requiredField('email');
+        $this->role = 'photographer';
     }
 
     public function updated($fields)
