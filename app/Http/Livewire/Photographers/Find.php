@@ -168,11 +168,11 @@ class Find extends Component
             foreach ($this->photographers as $photographer) {
                 $sumPreference = 0;
                 $sumPreferenceWeighted = 0;
-                foreach ($photographer->scores->load('criteria') as $score) {
-                    $checkScore[] = $score->score;
+                foreach (Score::with('criteria')->where('user_id', $photographer->id)->get() as $score) {
+                    // $checkScore[] = $score->score;
 
                     // maut
-                    $normalizeScoreMaut = (($checkScore[$score->criteria_id - 1] - $minCriteria[($score->criteria_id - 1)]) / ($maxCriteria[($score->criteria_id - 1)] - $minCriteria[($score->criteria_id - 1)]));
+                    $normalizeScoreMaut = (($score->score - $minCriteria[($score->criteria_id - 1)]) / ($maxCriteria[($score->criteria_id - 1)] - $minCriteria[($score->criteria_id - 1)]));
                     $sumPreference += ($weight[($score->criteria_id - 1)] * $normalizeScoreMaut);
 
                     $countPreferenceScoreMaut[] = [

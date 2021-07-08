@@ -4,10 +4,11 @@
         <h1>{{ __('Register') }}</h1>
         <p class="text-muted">Create your account</p>
 
+
         <div class="form-group">
             <label for="role">Mendaftar Sebagai</label>
             <select name="role" id="role" class="form-control" wire:model="role">
-                <option value="photographer">Fotografer</option>
+                <option value="photographer" selected>Fotografer</option>
                 <option value="customer">Customer</option>
             </select>
         </div>
@@ -15,7 +16,7 @@
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">
-                    <i class="cil-user c-icon"></i>
+                    <i class="fas fa-user"></i>
                 </span>
             </div>
             <input class="form-control" type="text" placeholder="Nama Depan.." name="first_name"
@@ -30,7 +31,7 @@
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">
-                    <i class="cil-user c-icon"></i>
+                    <i class="fas fa-user"></i>
                 </span>
             </div>
             <input class="form-control" type="text" placeholder="Nama Belakang.." name="last_name"
@@ -45,7 +46,7 @@
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">
-                    <i class="cil-phone c-icon"></i>
+                    <i class="fas fa-phone"></i>
                 </span>
             </div>
             <input class="form-control" type="number" min="0" placeholder="mobile" name="mobile"
@@ -59,7 +60,7 @@
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">
-                    <i class="cil-user c-icon"></i>
+                    <i class="fas fa-user"></i>
                 </span>
             </div>
             <input class="form-control @error('username') is-invalid @else is-valid @enderror" type="text"
@@ -74,7 +75,7 @@
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">
-                    <i class="cil-envelope-open c-icon"></i>
+                    <i class="fas fa-envelope"></i>
                 </span>
             </div>
             <input class="form-control @error('email') is-invalid @else is-valid @enderror" type="email"
@@ -89,7 +90,7 @@
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">
-                    <i class="cil-lock-locked c-icon"></i>
+                    <i class="fas fa-key"></i>
                 </span>
             </div>
             <input class="form-control @error('password') is-invalid @enderror" type="password" placeholder="Password"
@@ -103,7 +104,7 @@
         <div class="input-group mb-4">
             <div class="input-group-prepend">
                 <span class="input-group-text">
-                    <i class="cil-lock-locked c-icon"></i>
+                    <i class="fas fa-key"></i>
                 </span>
             </div>
             <input class="form-control" type="password" placeholder="Repeat password" name="password_confirmation"
@@ -114,4 +115,56 @@
         <button class="btn btn-block btn-success" type="submit" @if ($errors->any()) disabled @endif>Create Account</button>
 
     </form>
+
+
+    {{-- <form action="{{ route('registrations.store') }}" method="post" wire:submit.prevent="register">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Full name">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-user"></span>
+                </div>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <input type="email" class="form-control" placeholder="Email">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-envelope"></span>
+                </div>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <input type="password" class="form-control" placeholder="Password">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                </div>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <input type="password" class="form-control" placeholder="Retype password">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <div class="icheck-primary">
+                    <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                    <label for="agreeTerms">
+                        I agree to the <a href="#">terms</a>
+                    </label>
+                </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-4">
+                <button type="submit" class="btn btn-primary btn-block">Register</button>
+            </div>
+            <!-- /.col -->
+        </div>
+    </form> --}}
+
 </div>
