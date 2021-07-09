@@ -1,5 +1,6 @@
 <div>
 
+    @hasrole('superadmin|customer')
     @if (!$schedule->is_confirmed)
         <button wire:click="editMaut" class="btn btn-primary btn-sm" data-toggle="modal"
             data-target="#exampleModalMaut-{{ $schedule->id }}">
@@ -11,15 +12,24 @@
             Konfirmasi Order
         </button>
     @endif
+    @endhasrole
 
 
     @hasrole('photographer|superadmin')
-    @if ($schedule->photographer_id == auth()->id())
-        <button
-            onclick="confirm('apakah anda yakin? Data yang sudah di konfirmasi tidak akan bisa di ubah.') || event.stopImmediatePropagation()"
-            wire:click="orderApproval" class="btn btn-success btn-block">
-            Approve Order
-        </button>
+    @if ($schedule->photographer_id == auth()->id() && $schedule->is_approved < 1)
+
+        <div class="btn-group">
+            <button
+                onclick="confirm('apakah anda yakin? Data yang sudah di konfirmasi tidak akan bisa di ubah.') || event.stopImmediatePropagation()"
+                wire:click="orderApproval" class="btn btn-success">
+                Approve Order
+            </button>
+            <button
+                onclick="confirm('apakah anda yakin? Data yang sudah di konfirmasi tidak akan bisa di ubah.') || event.stopImmediatePropagation()"
+                wire:click="rejectOrder" class="btn btn-danger">
+                Reject Order
+            </button>
+        </div>
     @endif
 
     @endhasrole

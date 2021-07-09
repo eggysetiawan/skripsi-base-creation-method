@@ -1,23 +1,42 @@
-<!-- MDB core JavaScript -->
-<script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-{{-- ekko-lightbox --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"
-integrity="sha512-Y2IiVZeaBwXG1wSV7f13plqlmFOx8MdjuHyYFVoYzhyRr3nH/NMDjTBSswijzADdNzMyWNetbLMfOpIPl6Cv9g=="
-crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="{{ asset('plugins/ekko-lightbox/ekko-lightbox.min.js') }}"></script>
-<script>
-    $(document).ready(function {
-        $(document).on("click", '[data-toggle="lightbox"]', function(event) {
-            event.preventDefault();
-            $(this).ekkoLightbox();
-        });
-    });
-</script>
+ <!-- jQuery -->
+ <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+ <!-- Bootstrap 4 -->
+ <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+ {{-- select2 --}}
+ {{-- <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script> --}}
+ {{-- mdbootstrap --}}
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 
-<script>
-    AOS.init();
-</script>
-@yield('script')
+ <!-- Ekko Lightbox -->
+ <script src="{{ asset('plugins/ekko-lightbox/ekko-lightbox.min.js') }}"></script>
+ {{-- aos --}}
+ <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+ <!-- overlayScrollbars -->
+ <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+
+ <!-- AdminLTE App -->
+ <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+
+ <script>
+     AOS.init();
+ </script>
+
+
+ <script>
+     $(function() {
+         $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+             event.preventDefault();
+             $(this).ekkoLightbox({
+                 alwaysShowClose: true
+             });
+         });
+
+         $('.btn[data-filter]').on('click', function() {
+             $('.btn[data-filter]').removeClass('active');
+             $(this).addClass('active');
+         });
+     })
+ </script>
+
+ <livewire:scripts>

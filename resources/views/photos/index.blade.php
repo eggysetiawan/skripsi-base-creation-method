@@ -16,13 +16,14 @@
 
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <p class="lead">
-                Disini adalah tempat nongkrongnya para fotografer mempromosikan karya,kualitas,dan jasa apa saja
-                yang diberikan fotografer,
-                Website ini untuk membantu dan mempermudah orang-orang(customer) yang akan menggunakan jasa
-                photografi sesuai kriteria yang di inginkan pengguna jasa.
-
-            </p>
+            <blockquote class="blockquote text-center">
+                <p class="mb-0">Disini adalah tempat nongkrongnya para fotografer mempromosikan karya,kualitas,dan jasa apa
+                    saja
+                    yang diberikan fotografer,
+                    Website ini untuk membantu dan mempermudah orang-orang(customer) yang akan menggunakan jasa
+                    photografi sesuai kriteria yang di inginkan pengguna jasa.</p>
+                <footer class="blockquote-footer">KHONG GRAPHY </footer>
+            </blockquote>
         </div>
     </div>
 

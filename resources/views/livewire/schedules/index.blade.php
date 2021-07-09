@@ -43,7 +43,18 @@
                                     <td>{{ $schedule->date->format('d F, Y') }}</td>
                                     <td>{{ date('H:i', strtotime($schedule->detail->start)) . ' - ' . date('H:i', strtotime($schedule->detail->end)) }}
                                     </td>
-                                    <td>{{ $schedule->is_approved ? 'Disetujui' : 'Menunggu Konfirmasi' }}</td>
+                                    <td>
+                                        @switch($schedule->is_approved)
+                                            @case(1)
+                                                Disetujui.
+                                            @break
+                                            @case(2)
+                                                Ditolak.
+                                            @break
+                                            @default
+                                                Menunggu Konfirmasi.
+                                        @endswitch
+                                    </td>
                                     <td>{{ $schedule->already_done && $schedule->already_done_customer ? 'Terlaksana' : 'Belum Terlaksana' }}
                                     </td>
                                     <td>
@@ -64,7 +75,7 @@
                                             @endhasrole
                                         @else
                                             @hasrole('superadmin|photographer')
-                                            @if (!$schedule->already_done)
+                                            @if (!$schedule->already_done && $schedule->is_approved == 1)
                                                 @if ($schedule->photographer_id == auth()->id())
                                                     <button class="btn btn-info"
                                                         onclick="confirm('apakah anda yakin?.') || event.stopImmediatePropagation()"
@@ -78,15 +89,18 @@
                                             @endhasrole
 
                                             @hasrole('superadmin|customer')
-                                            @if (!$schedule->already_done_customer)
+                                            @if (!$schedule->already_done_customer && $schedule->is_approved == 1)
                                                 @if ($schedule->customer_id == auth()->id())
                                                     <button class="btn btn-info"
                                                         onclick="confirm('apakah anda yakin?.') || event.stopImmediatePropagation()"
                                                         wire:click="hasDoneCustomer('{{ $schedule->id }}')"
                                                         wire:loading.attr="disabled">
                                                         @include('layouts.livewire.loading-button')
-                                                        <span wire:loading.remove>Sudah Terlaksana @role('superadmin')
-                                                            (customer) @endrole</span>
+                                                        <span wire:loading.remove>Sudah Terlaksana
+                                                            @role('superadmin')
+                                                            (customer)
+                                                            @endrole
+                                                        </span>
                                                     </button>
                                                 @endif
                                             @endif
@@ -95,16 +109,16 @@
 
                                     </td>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="7" class="text-center">Belum ada data.</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                                @empty
+                                    <tr>
+                                        <td colspan="7" class="text-center">Belum ada data.</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
 
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

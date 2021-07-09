@@ -65,6 +65,15 @@ class Edit extends Component
         return redirect('schedules');
     }
 
+    public function rejectOrder()
+    {
+        $this->schedule->update([
+            'is_approved' => 2,
+        ]);
+        session()->flash('success', 'Pesanan telah berhasil di reject!');
+        return redirect('schedules');
+    }
+
     public function confirmOrder()
     {
         DB::transaction(function () {

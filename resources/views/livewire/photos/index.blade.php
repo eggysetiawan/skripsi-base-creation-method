@@ -34,7 +34,7 @@
     </div>
 
     @foreach ($creations as $creation)
-        <div class="row justify-content-start mb-3">
+        <div class="row justify-content-start mb-3" data-aos="fade-right" data-aos-delay="300">
             <span class="inline-block" wire:loading.remove>
                 <span class="display-4">{{ $creation->title }}</span>
             </span>
