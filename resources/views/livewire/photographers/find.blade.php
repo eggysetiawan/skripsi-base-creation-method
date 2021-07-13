@@ -24,13 +24,10 @@
                                 <div class="form-group">
                                     <label for="{{ $criteria->name }}">{{ ucfirst($criteria->name) }}
                                     </label>
-                                    {{-- <input type="range" name="{{ $criteria->name }}" id="{{ $criteria->name }}"
-                                        min="0" max="5" class="custom-range"
-                                        wire:model.debounce.500ms="{{ $criteria->name }}"> --}}
 
                                     <input type="number" name="{{ $criteria->name }}" id="{{ $criteria->name }}"
                                         min="1" max="{{ $criteria->max }}"
-                                        wire:model.debounce.500ms="{{ $criteria->name }}" class="form-control">
+                                        wire:model.debounce.500ms="{{ $criteria->name }}" class="form-control criteria">
                                     <small>
                                         <small>
                                             max {{ $criteria->max }}.

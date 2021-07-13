@@ -16,7 +16,7 @@
        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
            @hasrole('superadmin|photographer')
            <div class="image">
-           <img src="@if (auth()->user()->getFirstMediaUrl('displaypicture')) {{ asset(
+          <img src="@if (auth()->user()->getFirstMediaUrl('displaypicture')) {{ asset(
     auth()->user()->getFirstMediaUrl('displaypicture'),
 ) }} @else
                {{ asset('images/default.png') }} @endif" class="img-circle elevation-2"
@@ -25,7 +25,8 @@
            @endhasrole
            <div class="info">
            <a href="@hasrole('photographer') {{ route('profiles.show', auth()->user()->username) }} @else # @endhasrole"
-                   class="d-block">{{ auth()->user()->name }}</a>
+                   class="d-block">{{ auth()->user()->name }}
+               </a>
            </div>
        </div>
 

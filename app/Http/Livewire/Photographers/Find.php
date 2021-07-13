@@ -8,7 +8,6 @@ use App\Models\Criteria;
 use App\Models\Schedule;
 use App\Models\Score;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -19,12 +18,17 @@ class Find extends Component
     public $categories;
     public $category;
 
+
     public $harga;
     public $durasi;
     public $teknologi;
     public $service;
     public $capacity;
     public $profesionalitas;
+
+
+
+
 
     public bool $table;
 
@@ -60,6 +64,13 @@ class Find extends Component
     ];
 
 
+    public function criterias()
+    {
+        foreach ($this->criterias as $criteria) {
+            $criterias[] = $criteria->name;
+        }
+        return $criterias;
+    }
 
     public function mount()
     {
