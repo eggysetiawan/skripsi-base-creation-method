@@ -146,7 +146,10 @@ class Find extends Component
         $maxCriteria = [];
         $minCriteria = [];
         foreach ($this->criteriaCollections as $criteriaCollection) {
+            // cari bobot
             $weight[] = $criteriaCollection['value'] / $this->totalCriteriaValue;
+
+            // cari max & min
             $maxCriteria[] = Score::query()
                 ->with('criteria')
                 ->where('criteria_id', $criteriaCollection['id'])
@@ -157,6 +160,9 @@ class Find extends Component
                 ->where('criteria_id', $criteriaCollection['id'])
                 ->min('score');
         }
+
+        // dd($minCriteria);
+        // dd($maxCriteria);
 
         $photographers = User::query()
             ->with('scores')
@@ -176,9 +182,12 @@ class Find extends Component
         } else {
             $this->photographers = $photographers;
 
+            // looping fotografer
             foreach ($this->photographers as $photographer) {
                 $sumPreference = 0;
                 $sumPreferenceWeighted = 0;
+
+                // looping score fotografer
                 foreach (Score::with('criteria')->where('user_id', $photographer->id)->get() as $score) {
                     // $checkScore[] = $score->score;
 
