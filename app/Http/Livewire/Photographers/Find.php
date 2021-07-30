@@ -26,6 +26,8 @@ class Find extends Component
     public $capacity;
     public $profesionalitas;
 
+    // add criteria above
+
 
 
 
@@ -33,7 +35,7 @@ class Find extends Component
     public bool $table;
 
     public $photographers;
-    public $score;
+    public $scores;
 
     // maut
     public $criteriaCollections;
@@ -41,6 +43,9 @@ class Find extends Component
     public $category_find;
     public $mauts;
     public $weighteds;
+    public array $maxCriteria = [];
+    public array $minCriteria = [];
+    public array $weight = [];
 
     // maut modal
     public $photographerMaut;
@@ -82,7 +87,6 @@ class Find extends Component
         $this->category = collect();
 
         $this->photographers = User::photographerScore();
-        $this->score = collect();
 
         $this->harga = 0;
         $this->durasi = 0;
@@ -90,6 +94,10 @@ class Find extends Component
         $this->service = 0;
         $this->capacity = 0;
         $this->profesionalitas = 0;
+
+        // add criteria above
+
+
         $this->mauts = '';
         $this->weighteds = '';
 
@@ -142,27 +150,28 @@ class Find extends Component
 
         $this->totalCriteriaValue = $this->criteriaCollections->sum('value');
 
-        $weight = [];
-        $maxCriteria = [];
-        $minCriteria = [];
+        // $weight = [];
+        // $maxCriteria = [];
+        // $minCriteria = [];
         foreach ($this->criteriaCollections as $criteriaCollection) {
             // cari bobot
-            $weight[] = $criteriaCollection['value'] / $this->totalCriteriaValue;
+            $this->weight[] = $criteriaCollection['value'] / $this->totalCriteriaValue;
 
             // cari max & min
-            $maxCriteria[] = Score::query()
+            $this->maxCriteria[] = Score::query()
                 ->with('criteria')
                 ->where('criteria_id', $criteriaCollection['id'])
                 ->max('score');
 
-            $minCriteria[] = Score::query()
+            $this->minCriteria[] = Score::query()
                 ->with('criteria')
                 ->where('criteria_id', $criteriaCollection['id'])
                 ->min('score');
         }
 
-        // dd($minCriteria);
-        // dd($maxCriteria);
+
+        // dd($this->minCriteria);
+        // dd($this->maxCriteria);
 
         $photographers = User::query()
             ->with('scores')
@@ -177,6 +186,7 @@ class Find extends Component
             })
             ->get();
 
+
         if ($photographers->count() < 4) {
             $this->table = false;
         } else {
@@ -187,31 +197,33 @@ class Find extends Component
                 $sumPreference = 0;
                 $sumPreferenceWeighted = 0;
 
+
                 // looping score fotografer
                 foreach (Score::with('criteria')->where('user_id', $photographer->id)->get() as $score) {
                     // $checkScore[] = $score->score;
 
                     // maut
-                    $normalizeScoreMaut = (($score->score - $minCriteria[($score->criteria_id - 1)]) / ($maxCriteria[($score->criteria_id - 1)] - $minCriteria[($score->criteria_id - 1)]));
-                    $sumPreference += ($weight[($score->criteria_id - 1)] * $normalizeScoreMaut);
+                    $normalizeScoreMaut = (($score->score - $this->minCriteria[($score->criteria_id - 1)]) / ($this->maxCriteria[($score->criteria_id - 1)] - $this->minCriteria[($score->criteria_id - 1)]));
+                    $sumPreference += ($this->weight[($score->criteria_id - 1)] * $normalizeScoreMaut);
 
                     $countPreferenceScoreMaut[] = [
                         $photographer->id => $sumPreference,
                     ];
 
                     // weighted
-                    $benefical = $score->score / $minCriteria[$score->criteria_id - 1];
+                    $benefical = $score->score / $this->minCriteria[$score->criteria_id - 1];
                     if ($score->criteria->is_benefical == 1) {
-                        $benefical =  $score->score / $maxCriteria[$score->criteria_id - 1];
+                        $benefical =  $score->score / $this->maxCriteria[$score->criteria_id - 1];
                     }
 
-                    $normalizeScoreWeighted = $benefical * $weight[$score->criteria_id - 1];
+                    $normalizeScoreWeighted = $benefical * $this->weight[$score->criteria_id - 1];
                     $sumPreferenceWeighted += $normalizeScoreWeighted;
 
                     $countPreferenceScoreWeighted[] = [
                         $photographer->id => $sumPreferenceWeighted,
                     ];
                 }
+
                 $preferenceScoreMaut[] = [
                     'preference' => array_sum($countPreferenceScoreMaut[$photographer->id]),
                     'id' => $photographer->id,
@@ -249,6 +261,9 @@ class Find extends Component
                 ];
             }
 
+
+
+
             $this->mauts = $sortByMaut;
             $this->weighteds = $sortByWeighted;
         }
@@ -283,7 +298,9 @@ class Find extends Component
             [
                 'id' => 6,
                 'value' =>  $this->profesionalitas,
-            ]
+            ],
+            // add criteria above
+
         ]);
     }
 

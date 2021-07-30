@@ -18,7 +18,6 @@ class AddCoupleColumnToSchedulesTable extends Migration
             $table->foreignId('photographer_id')->after('customer_id')->constrained('users')->cascadeOnDelete();
             $table->date('date')->after('photographer_id');
             $table->tinyInteger('is_maut')->after('date')->default(0);
-            $table->timestamps();
         });
     }
 
