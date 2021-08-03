@@ -251,7 +251,7 @@
                         <div class="card-header">Sort by MAUT</div>
                         <div class="card-body">
                             <div class="row">
-                                <table class="table table-striped table-responsive">
+                                <table class="table table-striped">
                                     <thead>
                                         <tr class="text-center">
                                             <th>#</th>
@@ -394,7 +394,7 @@
                         <div class="card-header">Sort by Weighted Sum Model</div>
                         <div class="card-body">
                             <div class="row">
-                                <table class="table table-striped table-responsive">
+                                <table class="table table-striped">
                                     <thead>
                                         <tr class="text-center">
                                             <th>#</th>

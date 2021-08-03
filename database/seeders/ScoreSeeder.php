@@ -85,7 +85,7 @@ class ScoreSeeder extends Seeder
             Score::create([
                 'user_id' => $user->id,
                 'criteria_id' => $criteriaProfesionalitas->id,
-                'score' => rand(1, 6),
+                'score' => rand(1, 3),
             ]);
         }
     }
