@@ -15,13 +15,12 @@ class QuestionSeeder extends Seeder
     public function run()
     {
         $questions = [
-            'Sejak kapan anda sudah mengeluti bidang fotografi?',
-            'Berapa budget untuk menggunakan jasa anda?',
-            'Dan berapa lama untuk budget segitu?',
-            'Kamera apa yang anda gunakan?',
-            'Selain kamera, alat apa saja yang anda punya/biasa gunakana?',
-            'Hal apa yang membuat mengeluti dunia fotografi?',
-            'sudah berapa banyak terlibat dalam acara?',
+            'Berapa budget untuk menggunakan jasa photography anda?',
+            'Berapa lama waktu yang diberikan untuk jasa photography anda?',
+            'Merek/jenis kamera dan seri apa yang anda gunakan ?',
+            'Pelayanan apa saja yang anda berikan ?',
+            'Anda menggunakan memory kamera apa dan berapa gigabyte(GB)?',
+            'Sudah berapa lama anda menggeluti bidang fotografi ini ?',
         ];
 
         foreach ($questions as $question) {

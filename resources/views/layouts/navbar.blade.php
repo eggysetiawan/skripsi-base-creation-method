@@ -13,7 +13,7 @@
         <div style="border-left:1px solid #000;height:45px"></div>
         @hasrole('superadmin|customer')
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{ route('find.photographers') }}" class="nav-link">Fotografer</a>
+            <a href="{{ route('find.photographers') }}" class="nav-link">Find Fotografer</a>
         </li>
 
         <li class="nav-item d-none d-sm-inline-block">

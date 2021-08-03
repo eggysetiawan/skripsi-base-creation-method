@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 </head>
 
-<body class="hold-transition login-page">
+<body style="background-image:url({{ url('/images/background.jpg') }});object-fit: fill;"
+    class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
             <img src="{{ asset('images/logo.jpeg') }}" class="img-thumbnail w-100" style="height: 16rem;"
