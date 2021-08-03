@@ -19,7 +19,11 @@ class QuestionController extends Controller
         $questions = Question::get();
         $users = User::query()
             ->with('scores', 'questionnaires')
+            ->whereHas('roles', function ($query) {
+                return $query->where('name', 'photographer');
+            })
             ->whereHas('questionnaires')->get();
+
         $criterias = Criteria::get();
         return view('questions.index', compact('questions', 'users', 'criterias'));
     }

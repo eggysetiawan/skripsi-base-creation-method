@@ -38,6 +38,10 @@
                             </div>
                         @endforeach
 
+                        <div class="form-group">
+                            <x-score-parameter />
+                        </div>
+
                     </div>
                 </div>
                 <div class="card-footer">
