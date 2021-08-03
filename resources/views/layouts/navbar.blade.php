@@ -17,7 +17,7 @@
         </li>
 
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{ route('service') }}" class="nav-link">Service</a>
+            <a href="{{ route('service') }}" class="nav-link">Steps App</a>
         </li>
 
         <li class="nav-item d-none d-sm-inline-block">
