@@ -16,7 +16,7 @@ class CriteriaSeeder extends Seeder
     public function run()
     {
         $criterias = ['harga', 'durasi', 'teknologi', 'service', 'capacity', 'profesionalitas'];
-        $max = [2000, 12, 6, 3, 128, 6];
+        $max = [2000, 12, 6, 3, 128, 3];
         $benefit = [0, 0, 1, 1, 1, 1];
 
         $i = 0;
