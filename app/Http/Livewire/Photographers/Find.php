@@ -174,8 +174,9 @@ class Find extends Component
         // dd($this->maxCriteria);
 
         $photographers = User::query()
-            ->with('scores')
+            ->with('scores', 'questionnaires')
             ->has('scores')
+            ->has('questionnaires')
             ->whereHas('roles', function ($query) {
                 return $query->where('name', 'photographer');
             })
