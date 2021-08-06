@@ -6,7 +6,7 @@
    {{-- aos --}}
    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
    {{-- select2 --}}
-   {{-- <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}"> --}}
+   <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
    {{-- mdbootstrap --}}
    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
    <!-- overlayScrollbars -->

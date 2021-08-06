@@ -28,7 +28,8 @@ class CreationController extends Controller
     public function create()
     {
         $creation = new Creation();
-        return view('creations.create', compact('creation'));
+        $categories = Creation::select('category')->groupByRaw('category')->get();
+        return view('creations.create', compact('creation', 'categories'));
     }
 
     /**

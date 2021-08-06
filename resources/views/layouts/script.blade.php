@@ -3,7 +3,7 @@
  <!-- Bootstrap 4 -->
  <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
  {{-- select2 --}}
- {{-- <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script> --}}
+ <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
  {{-- mdbootstrap --}}
  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 
@@ -20,6 +20,12 @@
 
  <script>
      AOS.init();
+ </script>
+
+ <script>
+     $(document).ready(function() {
+         $('.select2').select2();
+     });
  </script>
 
 
