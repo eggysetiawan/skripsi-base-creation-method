@@ -69,6 +69,7 @@
     <!-- ./wrapper -->
 
     @include('layouts.script')
+    @stack('script')
 </body>
 
 </html>

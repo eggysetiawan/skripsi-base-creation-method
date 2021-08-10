@@ -1,4 +1,21 @@
 <div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-header">Dashboard</div>
+
+                <div class="card-body">
+
+                    <h1>{{ $chart1->options['chart_title'] }}</h1>
+                    {!! $chart1->renderHtml() !!}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <div class="row justify-content-center mb-3">
         <div class="col-md-9 ">
             <div class="form-group ">
@@ -136,4 +153,9 @@
                 </div>
             </div>
         </div>
+
+        @push('script')
+            {!! $chart1->renderChartJsLibrary() !!}
+            {!! $chart1->renderJs() !!}
+        @endpush
     </div>
