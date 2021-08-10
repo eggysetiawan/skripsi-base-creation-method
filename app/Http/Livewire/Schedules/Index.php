@@ -5,11 +5,13 @@ namespace App\Http\Livewire\Schedules;
 use App\Models\User;
 use Livewire\Component;
 use App\Models\Schedule;
+use App\Models\ScheduleReport;
 
 class Index extends Component
 {
 
     public $query = '';
+    public $month = '';
 
     public function getSchedulesProperty()
     {
@@ -26,7 +28,12 @@ class Index extends Component
                     ->whereHas('photographer', function ($q) {
                         return $q->where('name', 'like', "%$this->query%");
                     });
-            })->get();
+            })
+            ->when($this->month != '', function ($query) {
+                return $query->whereMonth('date',  $this->month);
+            })
+            ->latest()
+            ->get();
     }
 
     public function hasDonePhotographer(Schedule $schedule)
@@ -39,6 +46,7 @@ class Index extends Component
         $waitingForConfirmation = 'Menunggu konfirmasi dari customer';
         if ($schedule->already_done_customer) {
             $waitingForConfirmation = '';
+            $this->createReport($schedule);
         }
         session()->flash('success', 'Status pesanan sudah di update!' . $waitingForConfirmation);
         return back();
@@ -54,9 +62,19 @@ class Index extends Component
         $waitingForConfirmation = 'Menunggu konfirmasi dari photographer';
         if ($schedule->already_done) {
             $waitingForConfirmation = '';
+            $this->createReport($schedule);
         }
         session()->flash('success', 'Status pesanan sudah di update!' . $waitingForConfirmation);
         return back();
+    }
+
+    public function createReport($schedule)
+    {
+        return  ScheduleReport::create([
+            'user_id' => $schedule->photographer_id,
+            'name' => $schedule->photographer->name,
+            'date' => $schedule->date,
+        ]);
     }
 
     public function orderApproval(Schedule $schedule)

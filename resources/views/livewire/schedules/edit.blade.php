@@ -9,7 +9,15 @@
         <button
             onclick="confirm('apakah anda yakin? Data yang sudah di konfirmasi tidak akan bisa di ubah.') || event.stopImmediatePropagation()"
             wire:click="confirmOrder" class="btn btn-success btn-sm">
-            Konfirmasi Order
+            <span wire:loading.remove>Konfrimasi Order</span>
+            <div wire:loading>
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </div>
+
         </button>
     @endif
     @endhasrole

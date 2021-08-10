@@ -16,6 +16,7 @@
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
+        "laraveldaily/laravel-charts": "^0.1.25",
         "livewire/livewire": "^2.4",
         "spatie/laravel-medialibrary": "^9.0.0",
         "spatie/laravel-permission": "^4.0"

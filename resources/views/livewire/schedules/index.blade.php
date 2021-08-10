@@ -1,9 +1,24 @@
 <div>
     <div class="row justify-content-center mb-3">
-        <div class="col-md-9">
+        <div class="col-md-9 ">
             <div class="form-group ">
                 <input type="search" wire:model.debounce.500ms="query" class="form-control col-5 float-right"
                     placeholder="Cari..">
+                <select wire:model.debounce.500ms="month" class="form-control col-3 float-right mr-3">
+                    <option value="">Bulan</option>
+                    <option value="1">Januari</option>
+                    <option value="2">Februari</option>
+                    <option value="3">Maret</option>
+                    <option value="4">April</option>
+                    <option value="5">Mei</option>
+                    <option value="6">Juni</option>
+                    <option value="7">Juli</option>
+                    <option value="8">Agustus</option>
+                    <option value="9">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">November</option>
+                    <option value="12">Desember</option>
+                </select>
             </div>
         </div>
 
