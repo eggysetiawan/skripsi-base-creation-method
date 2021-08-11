@@ -11,9 +11,9 @@
     <div class="d-flex justify-content-center">
         <div class="col-md-9">
             <x-alert-success />
-        @role('superadmin')
-        <a href="{{ route('criterias.create') }}" class="btn btn-primary mb-2">Add criteria</a>
-        @endrole
+            @role('superadmin')
+            <a href="{{ route('criterias.create') }}" class="btn btn-primary mb-2">Add criteria</a>
+            @endrole
             <div class="card">
                 <div class="card-header"><i class="fa fa-align-justify"></i> Daftar Kriteria</div>
                 <div class="card-body">
@@ -23,9 +23,9 @@
                                 <th>#</th>
                                 <th>Nama Kriteria</th>
                                 <th>Benefical</th>
-                               @role('superadmin')
-                               <th></th>
-                               @endrole
+                                @role('superadmin')
+                                <th></th>
+                                @endrole
                             </tr>
                         </thead>
                         <tbody>
@@ -41,22 +41,33 @@
                                             Non benefical
                                         @endif
                                     </td>
-                                   @role('superadmin')
-                                   <td>
-                                    <a href="{{ route('criterias.edit', $criteria->slug) }}"
-                                        class="btn btn-success">Edit</a>
-                                    <form action="{{ route('criterias.destroy', $criteria->slug) }}" class="d-inline"
-                                        method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-danger"
-                                            onclick="return confirm('are you sure?')">Delete</button>
-                                    </form>
-                                </td>
-                                   @endrole
+                                    @role('superadmin')
+                                    <td>
+                                        <a href="{{ route('criterias.edit', $criteria->slug) }}"
+                                            class="btn btn-success">Edit</a>
+                                        <form action="{{ route('criterias.destroy', $criteria->slug) }}" class="d-inline"
+                                            method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger"
+                                                onclick="return confirm('are you sure?')">Delete</button>
+                                        </form>
+                                    </td>
+                                    @endrole
                                 </tr>
                             @endforeach
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="4">
+                                    Keterangan :
+                                    Benefit adalah Sangat bermanfaat dalam pengambilan keputusan aplikasi ini
+                                    Non benefit adalah sedikit bermanfaat dalam pengambilan keputusan aplikasi ini maka
+                                    pengambilan keputusan tersebut harus dipikirkan kembali.
+
+                                </th>
+                            </tr>
+                        </tfoot>
                     </table>
 
                 </div>

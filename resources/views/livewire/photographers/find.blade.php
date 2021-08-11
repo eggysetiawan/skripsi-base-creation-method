@@ -244,6 +244,16 @@
                 </div>
             </div>
 
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <p>
+                        Disarankan memilih weighted sum model karena bobot lebih besar nah jika fotografer tidak bisa
+                        selanjutnya di sarankan untuk memilih yang kedua dari metode maut karena lebih akurat karena dan
+                        jika photografer kedua tidak bisa disarankan memilih fotografer kedua metode weighted sum model
+                        karena bobotnya lebih besar dan begitu terus selanjutnya.
+                    </p>
+                </div>
+            </div>
 
             <div class="row justify-content-center">
                 <div class="col-md-6">
