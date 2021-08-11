@@ -85,6 +85,12 @@ class User extends Authenticatable implements HasMedia
     }
 
     // relations
+
+    public function color()
+    {
+        return $this->hasOne(Color::class, 'photographer_id', 'id');
+    }
+
     public function creations()
     {
         return $this->hasMany(Creation::class);

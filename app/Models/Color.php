@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ScheduleReport extends Model
+class Color extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'name', 'date'];
-    protected $dates = ['date'];
+    protected $fillable = ['photographer_id', 'name'];
+
+    public $timestamps = false;
 
     public function photographer()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
 }
