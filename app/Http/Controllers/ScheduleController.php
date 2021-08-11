@@ -15,6 +15,17 @@ class ScheduleController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function print($month)
+    {
+        $schedules = Schedule::query()
+            ->with(['customer', 'photographer', 'detail'])
+            ->when($month < 13, function ($query) use ($month) {
+                return $query->whereMonth('date',  $month);
+            })
+            ->latest()
+            ->get();
+        return view('schedules.pdf.index', compact('schedules'));
+    }
 
     public function index()
     {

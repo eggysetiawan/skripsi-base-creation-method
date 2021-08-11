@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Schedules;
 use App\Models\User;
 use Livewire\Component;
 use App\Models\Schedule;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\ScheduleReport;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
@@ -121,6 +122,14 @@ class Index extends Component
             'entries_number'        => '5',
         ];
         return new LaravelChart($chart_options);
+    }
+
+    public function report()
+    {
+        if ($this->month == '') {
+            $this->month = 13;
+        }
+        return redirect()->route('schedules.print', $this->month);
     }
 
     public function render()

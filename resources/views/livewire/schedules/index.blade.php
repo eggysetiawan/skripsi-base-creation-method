@@ -1,5 +1,6 @@
 <div>
 
+    @hasrole('customer|superadmin|admin')
     <div class="row justify-content-center">
         <div class="col-md-9">
             <div class="card">
@@ -14,10 +15,11 @@
             </div>
         </div>
     </div>
-
+    @endhasrole
     <div class="row justify-content-center mb-3">
         <div class="col-md-9 ">
-            <div class="form-group ">
+            <div class="form-group">
+                <button class="btn btn-primary float-right" wire:click="report" target="_blank">Print</button>
                 <input type="search" wire:model.debounce.500ms="query" class="form-control col-5 float-right"
                     placeholder="Cari..">
                 <select wire:model.debounce.500ms="month" class="form-control col-3 float-right mr-3">

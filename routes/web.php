@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('pdf')->name('pdf.')->group(function () {
         Route::get('{schedule}/schedule', [PdfController::class, 'schedule'])->name('schedule');
     });
+    Route::get('schedules/{month?}/print', [ScheduleController::class, 'print'])->name('schedules.print');
 
     Route::resource('portfolios', PortfolioController::class);
 
