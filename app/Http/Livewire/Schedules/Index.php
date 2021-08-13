@@ -124,6 +124,47 @@ class Index extends Component
         return new LaravelChart($chart_options);
     }
 
+    public function chartLine()
+    {
+        $schedules = ScheduleReport::with('photographer.color')
+            ->select('*', 'user_id as pg')
+            ->groupByRaw('pg')
+            ->get();
+
+        foreach ($schedules as $schedule) {
+            $photographers[] =
+                [
+                    'name' => ucfirst($schedule->photographer->name),
+                    'condition' => 'user_id = ' . $schedule->user_id,
+                    'color' => $schedule->photographer->color->name,
+                    'fill' => true,
+                ];
+        }
+        // dd($photographers);
+
+        $chart_options = [
+            'chart_title' => 'Users by months',
+            'chart_type' => 'line',
+            'chart_title' => 'Grafik Fotografer',
+            'report_type' => 'group_by_date',
+            'model' => 'App\Models\User',
+            'group_by_field' => 'created_at',
+            'group_by_period' => 'month',
+            'model' => 'App\Models\ScheduleReport',
+            'conditions' => $photographers,
+            'group_by_field'        => 'date',
+            'group_by_period'       => 'month',
+            'aggregate_function'    => 'sum',
+            'aggregate_field'       => 'amount',
+            'filter_field'          => 'created_at',
+            'group_by_field_format' => 'Y-m-d',
+            'column_class'          => 'col-md-12',
+            'entries_number'        => '5',
+        ];
+        // dd($chart_options);
+        return new LaravelChart($chart_options);
+    }
+
     public function report()
     {
         if ($this->month == '') {
@@ -138,6 +179,7 @@ class Index extends Component
         return view('livewire.schedules.index', [
             'schedules' => $this->schedules,
             'chart1' => $this->chart(),
+            'chart_line' => $this->chartLine(),
         ]);
     }
 }

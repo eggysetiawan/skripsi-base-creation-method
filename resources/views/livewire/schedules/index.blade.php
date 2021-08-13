@@ -15,6 +15,22 @@
             </div>
         </div>
 
+
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">{{ $chart_line->options['chart_title'] }}</div>
+
+                <div class="card-body">
+
+                    {!! $chart_line->renderHtml() !!}
+
+                </div>
+
+            </div>
+        </div>
     </div>
     @endhasrole
 
@@ -161,9 +177,9 @@
 
         @push('script')
             {!! $chart1->renderChartJsLibrary() !!}
+            {!! $chart_line->renderJs() !!}
             {!! $chart1->renderJs() !!}
             {{-- {!! $chart_pie->renderChartJsLibrary() !!} --}}
-            {{-- {!! $chart_pie->renderJs() !!} --}}
 
 
         @endpush
