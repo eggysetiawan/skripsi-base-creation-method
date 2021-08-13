@@ -108,7 +108,7 @@ class Index extends Component
 
         $chart_options = [
             'chart_type' => 'pie',
-            'chart_title' => 'Best photographer untill ' . now()->format('F'),
+            'chart_title' => 'Fotografer paling disukai',
             'report_type' => 'group_by_relationship',
             'model' => 'App\Models\ScheduleReport',
             'relationship_name'        => 'photographer',

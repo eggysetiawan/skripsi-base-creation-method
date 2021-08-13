@@ -2,12 +2,12 @@
 
     @hasrole('customer|superadmin|admin')
     <div class="row justify-content-center" wire:ignore>
-        <div class="col-md-9">
+        <div class="col-md-6">
             <div class="card">
+                <div class="card-header">{{ $chart1->options['chart_title'] }}</div>
 
                 <div class="card-body">
 
-                    <h1>{{ $chart1->options['chart_title'] }}</h1>
                     {!! $chart1->renderHtml() !!}
 
                 </div>
