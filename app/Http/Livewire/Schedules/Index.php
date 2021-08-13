@@ -100,7 +100,7 @@ class Index extends Component
             $photographers[] =
                 [
                     'name' => ucfirst($schedule->name),
-                    'condition' => 'user_id = ' . $schedule->user_id . ' AND date("month") = ' . now()->format('n'),
+                    'condition' => 'user_id = ' . $schedule->user_id,
                     'color' => $schedule->photographer->color->name,
                 ];
         }
@@ -111,17 +111,16 @@ class Index extends Component
             'chart_title' => 'Best photographer untill ' . now()->format('F'),
             'report_type' => 'group_by_relationship',
             'model' => 'App\Models\ScheduleReport',
-            'conditions' => $photographers,
             'relationship_name'        => 'photographer',
             'group_by_field'        => 'name',
             'group_by_period'       => 'month',
             'aggregate_function'    => 'sum',
             'aggregate_field'       => 'amount',
-            'filter_period'          => 'month',
             'group_by_field_format' => 'Y-m-d',
             'column_class'          => 'col-md-10',
             'entries_number'        => $schedules->count(),
         ];
+        // dd($chart_options);
         return new LaravelChart($chart_options);
     }
 
