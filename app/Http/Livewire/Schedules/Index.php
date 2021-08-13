@@ -88,73 +88,39 @@ class Index extends Component
         return back();
     }
 
+
     public function chart()
     {
-        $schedules = Schedule::with('photographer.color')
-            ->select('*', 'photographer_id as pg')
+        $schedules = ScheduleReport::with('photographer.color')
+            ->select('*', 'user_id as pg')
             ->groupByRaw('pg')
             ->get();
 
         foreach ($schedules as $schedule) {
             $photographers[] =
                 [
-                    'name' => ucfirst($schedule->photographer->name),
-                    'condition' => 'user_id = ' . $schedule->photographer_id,
+                    'name' => ucfirst($schedule->name),
+                    'condition' => 'user_id = ' . $schedule->user_id . ' AND date("month") = ' . now()->format('n'),
                     'color' => $schedule->photographer->color->name,
-                    'fill' => true,
                 ];
         }
         // dd($photographers);
 
         $chart_options = [
             'chart_type' => 'pie',
-            'chart_title' => 'Total Photographer by month',
-            'report_type' => 'group_by_date',
-            'model' => 'App\Models\ScheduleReport',
-            // 'conditions' => $photographers,
-            'group_by_field'        => 'date',
-            'group_by_period'       => 'month',
-            'aggregate_function'    => 'sum',
-            'aggregate_field'       => 'amount',
-            'filter_field'          => 'date',
-            'group_by_field_format' => 'Y-m-d',
-            'column_class'          => 'col-md-12',
-            'entries_number'        => '5',
-        ];
-        return new LaravelChart($chart_options);
-    }
-    public function chartPie()
-    {
-        $schedules = Schedule::with('photographer.color')
-            ->select('*', 'photographer_id as pg')
-            ->groupByRaw('pg')
-            ->get();
-
-        foreach ($schedules as $schedule) {
-            $photographers[] =
-                [
-                    'name' => ucfirst($schedule->photographer->name),
-                    'condition' => 'user_id = ' . $schedule->photographer_id,
-                    'color' => $schedule->photographer->color->name,
-                    'fill' => true,
-                ];
-        }
-        // dd($photographers);
-
-        $chart_options = [
-            'chart_type' => 'pie',
-            'chart_title' => 'Fotografer of the month',
-            'report_type' => 'group_by_date',
+            'chart_title' => 'Best photographer untill ' . now()->format('F'),
+            'report_type' => 'group_by_relationship',
             'model' => 'App\Models\ScheduleReport',
             'conditions' => $photographers,
-            'group_by_field'        => 'date',
+            'relationship_name'        => 'photographer',
+            'group_by_field'        => 'name',
             'group_by_period'       => 'month',
             'aggregate_function'    => 'sum',
             'aggregate_field'       => 'amount',
-            'filter_field'          => 'created_at',
+            'filter_period'          => 'month',
             'group_by_field_format' => 'Y-m-d',
-            'column_class'          => 'col-md-12',
-            'entries_number'        => '5',
+            'column_class'          => 'col-md-10',
+            'entries_number'        => $schedules->count(),
         ];
         return new LaravelChart($chart_options);
     }
@@ -172,7 +138,6 @@ class Index extends Component
 
         return view('livewire.schedules.index', [
             'schedules' => $this->schedules,
-            // 'chart_pie' => $this->chartPie(),
             'chart1' => $this->chart(),
         ]);
     }

@@ -1,8 +1,8 @@
 <div>
 
     @hasrole('customer|superadmin|admin')
-    <div class="row justify-content-center">
-        <div class="col-md-6">
+    <div class="row justify-content-center" wire:ignore>
+        <div class="col-md-9">
             <div class="card">
 
                 <div class="card-body">
@@ -14,20 +14,10 @@
 
             </div>
         </div>
-        {{-- <div class="col-md-6">
-            <div class="card">
 
-                <div class="card-body">
-
-                    <h1>{{ $chart_pie->options['chart_title'] }}</h1>
-                    {!! $chart_pie->renderHtml() !!}
-
-                </div>
-
-            </div>
-        </div> --}}
     </div>
     @endhasrole
+
     <div class="row justify-content-center mb-3">
         <div class="col-md-9 ">
             <div class="form-group">
@@ -53,6 +43,8 @@
         </div>
 
     </div>
+
+
     <div class="row justify-content-center">
         <div class="col-md-9">
             <div class="card">
@@ -172,5 +164,7 @@
             {!! $chart1->renderJs() !!}
             {{-- {!! $chart_pie->renderChartJsLibrary() !!} --}}
             {{-- {!! $chart_pie->renderJs() !!} --}}
+
+
         @endpush
     </div>

@@ -6,6 +6,10 @@
  <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
  {{-- mdbootstrap --}}
  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+ {{-- chart.js --}}
+ <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
+ <script src="dist/js/pages/dashboard3.js"></script>
+
 
  <!-- Ekko Lightbox -->
  <script src="{{ asset('plugins/ekko-lightbox/ekko-lightbox.min.js') }}"></script>
